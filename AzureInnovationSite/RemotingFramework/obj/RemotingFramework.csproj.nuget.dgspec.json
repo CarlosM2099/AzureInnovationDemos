@@ -1,0 +1,86 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\AzureInnovationDemos\\AzureInnovationSite\\RemotingFramework\\RemotingFramework.csproj": {}
+  },
+  "projects": {
+    "D:\\AzureInnovationDemos\\AzureInnovationSite\\RemotingFramework\\RemotingFramework.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\AzureInnovationDemos\\AzureInnovationSite\\RemotingFramework\\RemotingFramework.csproj",
+        "projectName": "RemotingFramework",
+        "projectPath": "D:\\AzureInnovationDemos\\AzureInnovationSite\\RemotingFramework\\RemotingFramework.csproj",
+        "packagesPath": "C:\\Users\\krmx1\\.nuget\\packages\\",
+        "outputPath": "D:\\AzureInnovationDemos\\AzureInnovationSite\\RemotingFramework\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\krmx1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://3sharp.pkgs.visualstudio.com/_packaging/3SharpDemoPlatform/nuget/v3/index.json": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/MSDXProvDev/_packaging/CommonPackages/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "targetAlias": "netcoreapp3.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "targetAlias": "netcoreapp3.0",
+          "dependencies": {
+            "Microsoft.PowerShell.SDK": {
+              "target": "Package",
+              "version": "[7.0.0-preview.4, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.13.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.2, )"
+            },
+            "System.Management.Automation.dll": {
+              "target": "Package",
+              "version": "[10.0.10586, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

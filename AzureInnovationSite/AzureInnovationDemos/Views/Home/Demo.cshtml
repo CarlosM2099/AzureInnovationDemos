@@ -1,0 +1,184 @@
+﻿
+@{
+    ViewBag.Title = "Demo";
+}
+<div id="demo" v-cloak>
+    <h2>{{demo.name}} </h2>
+    <p>{{demo.abstract}}</p>
+    <br />
+    <div class="demo-section">
+        <h4>Technologies:</h4> <span>{{demo.technologies}}</span>
+        <br />
+        <br />
+        <div v-if="demo.assets && demo.assets.length > 0">
+            <h4>Demo Assets:</h4>
+            <ul class="demo-resource-list" v-if="demo.assets">
+                <li v-for="asset in demo.assets" v-if="asset.type.name == 'ClickThrough' || asset.type.name == 'LiveDemo'|| asset.type.name == 'Video' || asset.type.name == 'PrivateMD'">
+                    <span class="resoure-item">
+                        <i v-if="asset.type.name == 'ClickThrough'" class="fa fa-mouse-pointer"></i>
+                        <i v-if="asset.type.name == 'LiveDemo' || asset.type.name == 'PrivateMD'" class="fa fa-file-text-o"></i>
+                        <i v-if="asset.type.name == 'Video'" class="fa fa-video-camera"></i>
+                        <a v-if="asset.type.name == 'ClickThrough' || asset.type.name == 'LiveDemo'|| asset.type.name == 'Video'" v-bind:href="asset.value" target="_blank" v-on:click="gotAsset(asset)">{{asset.name}}</a>
+                        <a v-if="asset.type.name == 'PrivateMD'" v-bind:href="'../guide/'+asset.alias" target="_blank" v-on:click="gotAsset(asset)">{{asset.name}}</a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br />
+    <div class="demo-section">
+        <h4>Additional resources for live-code demo:</h4>
+        <p>{{demo.additional}}</p>
+
+        <div class="validationg-demo-res" v-if="user.password && !demo.isSharedEnvironment && !demo.environment && validatingDemoResources">
+            <h4>
+                <i class="fa fa-hourglass-2"></i>
+                <span class="validationg-demo-res-el">
+                    Validating demo available resources
+                </span>
+            </h4>
+        </div>
+        <div class="demo-access-validation" v-if="user.password && !demo.isSharedEnvironment && !demo.environment && !generatingDemo && availableDemos">
+            <h4>
+                <i class="fa fa-desktop"></i>
+                There are {{availableDemosCount}} available environments for this demo
+            </h4>
+            <a v-on:click="createEnvironment(demo.id)">Get My Credentials</a>
+        </div>
+        <div class="processing-demo-access" v-if="user.password && !demo.isSharedEnvironment && !demo.environment && generatingDemo">{{provisioningDemoStatus}}</div>
+        <div class="no-demo-res" v-if="!availableDemos && nextAvailableDemoEnv!='' && !demo.isSharedEnvironment">
+            <br />
+            <h4>
+                <i class="fa fa-clock-o"></i>We are sorry but there's not available demo environments at this time, the next availability will be at: {{nextAvailableDemoEnv}}
+            </h4>
+        </div>
+
+        <div class="demo-creds-list" v-if="demo.environment && !demo.isSharedEnvironment && demo.environment.environmentProvisioned">
+
+            <br />
+
+            <i class="fa fa-user-circle-o"></i>
+            <div class="demo-creds">
+                <h4> Your demo user account: </h4>
+                <span>
+                    User:
+                    <span>{{demo.environment.environmentUser}}</span>
+                    <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="demo.environment.environmentUser" title="copy"></button>  <br />
+                </span>
+                <span>
+                    Password:
+                    <span>{{demo.environment.environmentPassword}}</span>
+                    <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="demo.environment.environmentPassword" title="copy"></button><br />
+                </span>
+
+                <span v-if="demo.environment.environmentURL">
+                    <a v-bind:href="demo.environment.environmentURL" target="_blank">{{demo.environment.environmentDescription}}</a>
+                    <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="demo.environment.environmentURL" title="copy"></button>
+                </span>
+            </div>
+            <div v-if="demo.vm">
+                <br />
+                <i class="fa fa-cloud"></i>
+                <div class="demo-creds">
+                    <h4>Your virtual desktop session: </h4>
+                    <span v-if="demo.vm.url">RDP Link<a v-bind:href="'/api/demos/'+demo.id+'/rdp'"> click here to download</a></span>
+
+                    <ul class="demo-vm-tips" v-if="demo.vm.url">
+                        <li>
+                            Use your demo user credentials to log in
+                        </li>
+                        <li>
+                            Use the prefix 'azuread\' before your user name:<br /> &ensp;&ensp;azuread\{{demo.environment.environmentUser}}
+                            <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="'azuread\\'+demo.environment.environmentUser" title="copy"></button>
+                        </li>
+                        <li>
+                            Mac user? Download <a href="https://apps.apple.com/us/app/microsoft-remote-desktop-10/id1295203466?mt=12" target="_blank"> Microsoft RDP client </a> first
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="demo-access-resource-list" v-if="demo.assets">
+                <div v-for="asset in demo.assets">
+                    <div class="resoure-item" v-if="asset.type.name == 'AccessKeyToken' || asset.type.name == 'Link'">
+                        <i v-if="asset.type.name == 'AccessKeyToken'" class="fa fa-key"></i>
+                        <i v-if="asset.type.name == 'Link'" class="fa fa-globe"></i>
+                        <div class="demo-creds">
+                            <h4>{{asset.name}}</h4>
+                            <span v-if="asset.type.name == 'AccessKeyToken'">{{asset.value}}</span>
+                            <a v-if="asset.type.name == 'Link'" v-bind:href="asset.value" target="_blank">{{asset.value}}</a>
+                            <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="asset.value" title="copy"></button><br />
+                        </div>
+                        <br />  <br />
+                    </div>
+                    <div class="resoure-item code" v-if="asset.type.name == 'Code'">
+                        <i class="fa fa-code"></i>                        
+                        <div class="demo-creds">
+                            <h4>{{asset.name}}</h4>
+                            <code v-bind:class="'code' + asset.id">{{asset.value}}</code>         
+                            <span class="code-actions">
+                                <button class="fa fa-plus" v-on:click="toggleCode('code' + asset.id)"></button>
+                                <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="asset.value" title="copy"></button><br />
+                            </span>
+                        </div>
+                        <br />  <br />
+                    </div>
+                </div>
+            </div>
+            <div class="demo-access-expiration" v-if="demoExpirationDate != ''">
+                <i class="fa fa-clock-o"></i>
+                <div class="demo-access-expiration-date">
+                    <h4>Your access to this demo environment will expire at:</h4>
+                    <h4 class="demo-access-expiration-value">{{demoExpirationDate}}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="demo-creds-list" v-if="demo.environment && !demo.isSharedEnvironment && !demo.environment.environmentProvisioned">
+            <div class="demo-access-expiration">
+                <i class="fa fa-clock-o"></i>
+                <div class="demo-access-expiration-date">
+                    <h4>We are finishing setting things up.</h4>
+                    <span>It can take maximum  10 minutes to complete this process</span>
+                    <br />
+                    <span class="processing-demo-access">Your environment will be ready soon.</span>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="demo-creds-list" v-if="demo.sharedCredentials &&  demo.isSharedEnvironment">
+            <div v-for="credentials in demo.sharedCredentials">
+                <i class="fa fa-user-circle-o"></i>
+                <div class="demo-creds">
+                    <h4>Shared demo user account: </h4>
+                    <span>
+                        User:
+                        <span>{{credentials.demoUser}}</span>
+                        <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="credentials.demoUser" title="copy"></button>  <br />
+                    </span>
+                    <span>
+                        Password:
+                        <span>{{credentials.demoPassword}}</span>
+                        <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="credentials.demoPassword" title="copy"></button>  <br />
+                    </span>
+                    <span v-if="credentials.demoURL">
+                        <a v-bind:href="credentials.demoURL" target="_blank">Go to Shared Demo</a>
+                        <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="credentials.demoURL" title="copy"></button>
+                    </span>
+                </div>
+            </div>
+            <div class="demo-access-resource-list" v-if="demo.assets">
+                <div v-for="asset in demo.assets">
+                    <div class="resoure-item" v-if="asset.type.name == 'AccessKeyToken'">
+                        <i class="fa fa-key"></i>
+                        <div class="demo-creds">
+                            <h4>{{asset.name}}</h4>
+                            <span>{{asset.value}}</span>
+                            <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="asset.value" title="copy"></button><br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="~/js/demo.js"></script>

@@ -1,0 +1,24 @@
+{
+  "Name": "MyShuttle",
+  "Teams": "Teams.json",
+  "SourceCode": "ImportSourceCode.json",
+  "CreateService": "CreateServiceEndPoint.json",
+  "BoardColumns": "BoardColumns.json",
+  "ProjectSettings": "ProjectSettings.json",
+  "CardStyle": "UpdateCardStyles.json",
+  "CardField": "UpdateCardFields.json",
+  "PBIfromTemplate": "PBIfromTemplate.json",
+  "BugfromTemplate": "BugfromTemplate.json",
+  "EpicfromTemplate": "EpicfromTemplate.json",
+  "TaskfromTemplate": "TaskfromTemplate.json",
+  "TestCasefromTemplate": "TestCasefromTemplate.json",
+  "FeaturefromTemplate": "FeaturefromTemplate.json",
+  "TestPlanfromTemplate": "TestPlanFromTemplate.json",
+  "TestSuitefromTemplate": "TestSuitesFromTemplate.json",
+  "UserStoriesFromTemplate": "",
+  "SetEpic": "EnableEpic.json",
+  "BoardRows": "",
+
+  "TeamArea": "TeamArea.json"
+
+}

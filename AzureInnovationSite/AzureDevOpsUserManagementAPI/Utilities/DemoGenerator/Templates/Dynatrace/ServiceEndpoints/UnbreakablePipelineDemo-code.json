@@ -1,0 +1,16 @@
+{
+  "data": {
+
+  },
+  "name": "UnbreakablePipelineDemo-code",
+  "type": "git",
+  "url": "https://github.com/safia-habib/UnbreakablePipelineAzureHOTDay.git",
+  "authorization": {
+    "scheme": "UsernamePassword",
+    "parameters": {
+      "username": "$GitUserName$",
+      "password": "$GitUserPassword$"
+    }
+  },
+  "isReady": true
+}

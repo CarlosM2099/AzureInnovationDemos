@@ -1,0 +1,151 @@
+﻿img {
+    max-width: 100%;
+    display: block;
+}
+
+article {
+    background-color: white;
+    padding: 25px;
+    margin: 4px;
+    box-shadow: 3px 3px lightgrey;
+    border-radius: 2px;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+code {
+    -ms-text-size-adjust:;
+    -webkit-text-size-adjust: auto;
+    background-color: rgb(246, 248, 250);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    box-sizing: border-box;
+    color: rgb(36, 41, 46);
+    display: block;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+    font-size: 13.6px;
+    line-height: 19.72px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    overflow: auto;
+    padding-top: 0px;
+    word-break: normal;
+    word-wrap: normal;
+    white-space: pre-wrap;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.navbar.navbar-inverse.navbar-fixed-top {
+    z-index: 1;
+}
+
+.resoure-item .fa-user-circle-o, .resoure-item .fa-cloud, .resoure-item .fa-key, .resoure-item .fa-clock-o, .resoure-item .fa-globe, .resoure-item .fa-code {
+    font-size: 30px;
+    color: lightblue;
+    vertical-align: text-top;
+    margin-right: 5px;
+    margin-top: 8px;
+}
+
+.resoure-item-value {
+    display: inline-block;
+    vertical-align: text-top;
+}
+
+.resoure-item.code .demo-creds {
+    max-width: 350px;
+}
+
+.guide-resources {
+    background-color: white;
+    padding: 15px;
+    border-radius: 3px;
+    box-shadow: lightgray 2px 2px 2px 2px;
+    margin: 4px;
+    position: fixed;
+    display: none;
+    right: -4px;
+    top: 46px;
+    font-size: 14px;
+}
+
+.code-actions > .fa-plus {
+    margin-top: 10px
+}
+
+.guide-resources h5 {
+    font-size: 16px;
+}
+
+
+#resources-icon-container {
+    top: 10px;
+    z-index: 2;
+    position: fixed;
+    cursor: pointer;
+    font-size: 15px !important;
+    right: 100px;
+    padding: 3px;
+}
+
+#resources-icon {
+    font-size: 20px;
+    vertical-align: middle;
+}
+
+
+article a {
+    color: #337ab7 !important;
+}
+
+article ul {
+    list-style: disc;
+}
+
+    article ul ul {
+        list-style: circle;
+    }
+
+#guide > span {
+    cursor: pointer;
+    font-size: 18px;
+    color: #23527c;
+}
+
+    #guide > span:hover {
+        text-decoration: underline;
+    }
+
+.demo-link {
+    color: #337ab7;
+    width: 100%;
+    display: inline-block;
+    text-align: right
+}
+
+blockquote {
+    background-color: #eee;
+    font-size: inherit;
+}
+
+h1 {
+    font-size: 32px;
+    padding-bottom: 7px;
+}
+
+h2 {
+    border-bottom: #ddd 1px solid;
+    font-size: 24px;
+    line-height: 30px;
+    margin: 24px 0 16px 0;
+    padding-bottom: 7px;
+}
+
+h3, h4 {
+    padding: 6px 0 4px 0;
+}

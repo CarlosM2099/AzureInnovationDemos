@@ -1,0 +1,2319 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.MD.Common</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.MD.Common.AppSettings">
+            <summary>
+            Helper class to retrieve the Application Settings.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.AppSettings.UserAgentString">
+            <summary>
+            Gets the user agent string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.AppSettings.GetAppSetting(System.String,System.String)">
+            <summary>
+            Gets an application setting.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="defaultValue">The default value.</param>
+        </member>
+        <member name="T:Microsoft.MD.Common.Dal.IRepository`1">
+            <summary>
+            Interface for generic repositories.
+            </summary>
+            <typeparam name="TEntity">The type of the entity.</typeparam>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IRepository`1.Delete(System.Object)">
+            <summary>
+            Deletes the entity with the specified Id.
+            </summary>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IRepository`1.Delete(`0)">
+            <summary>
+            Deletes the specified entity.
+            </summary>
+            <param name="entity">The entity.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IRepository`1.Query">
+            <summary>
+            Gets an <see cref="T:System.Linq.IQueryable" /> of the data type, for use in building custom
+            LINQ queries.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IRepository`1.Query(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Gets the entities with the specified filter.
+            </summary>
+            <param name="filter">The filter.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IRepository`1.FindById(System.Object)">
+            <summary>
+            Gets an entity by Id.
+            </summary>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IRepository`1.FindByIdAsync(System.Object)">
+            <summary>
+            Gets an entity by Id.
+            </summary>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IRepository`1.FindWhere(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Gets the first item to match the filter expression.
+            </summary>
+            <param name="filter">The filter.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IRepository`1.FindWhereAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Gets the first item to match the filter expression.
+            </summary>
+            <param name="filter">The filter.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IRepository`1.Insert(`0)">
+            <summary>
+            Inserts the specified entity.
+            </summary>
+            <param name="entity">The entity.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IRepository`1.Update(`0)">
+            <summary>
+            Updates the specified entity.
+            </summary>
+            <param name="entity">The entity.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IRepository`1.RevertChanges(`0)">
+            <summary>
+            Reverts any changes made to the entity.
+            </summary>
+            <param name="entity">The entity to revert.</param>
+        </member>
+        <member name="T:Microsoft.MD.Common.Dal.IUnitOfWork`1">
+            <summary>
+            Interface for Unit of Work
+            </summary>
+            <typeparam name="TContext"></typeparam>
+        </member>
+        <member name="P:Microsoft.MD.Common.Dal.IUnitOfWork`1.Context">
+            <summary>
+            Gets the Database Context.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IUnitOfWork`1.Save">
+            <summary>
+            Saves all changes to data models.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IUnitOfWork`1.SaveAsync">
+            <summary>
+            Saves all changes to data models.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IUnitOfWork`1.SaveOrRevert">
+            <summary>
+            Save all changes to data models, or reverts all changes if a <see
+            cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" /> is thrown.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IUnitOfWork`1.SaveOrRevertAsync">
+            <summary>
+            Save all changes to data models, or reverts all changes if a <see
+            cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" /> is thrown.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IUnitOfWork`1.SaveAndOverwrite">
+            <summary>
+            On <see cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" />, overwrites the values in the
+            Database with the current model changes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IUnitOfWork`1.SaveAndOverwriteAsync">
+            <summary>
+            On <see cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" />, overwrites the values in the
+            Database with the current model changes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IUnitOfWork`1.UpdateAndSaveForConcurrency``1(System.Int32,System.Action{``0},System.Int32)">
+            <summary>
+            Looks up the entity by Id and calls the <paramref name="updateCallback" />,
+            then Saves handling <see cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" /> exceptions for
+            the <paramref name="maxRetries" /> amount.
+            </summary>
+            <typeparam name="TEntity">The type of Entity being updated.</typeparam>
+            <param name="entityId">The Id of the Entity.</param>
+            <param name="updateCallback">
+            The callback that updates properties on the Entity.
+            </param>
+            <param name="maxRetries">
+            The maximum number of times to retry on <see
+            cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" /> exceptions.
+            </param>
+            <returns>The updated entity.</returns>
+            <exception cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException">
+            Throws after max retries used.
+            </exception>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IUnitOfWork`1.UpdateAndSaveForConcurrency``1(System.Int32,System.Func{``0,System.Threading.Tasks.Task},System.Int32)">
+            <summary>
+            Looks up the entity by Id and calls the <paramref name="updateCallback" />,
+            then Saves handling <see cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" /> exceptions for
+            the <paramref name="maxRetries" /> amount.
+            </summary>
+            <typeparam name="TEntity">The type of Entity being updated.</typeparam>
+            <param name="entityId">The Id of the Entity.</param>
+            <param name="updateCallback">
+            The async callback that updates properties on the Entity.
+            </param>
+            <param name="maxRetries">
+            The maximum number of times to retry on <see
+            cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" /> exceptions.
+            </param>
+            <returns>The updated entity.</returns>
+            <exception cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException">
+            Throws after max retries used.
+            </exception>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IUnitOfWork`1.RevertChanges">
+            <summary>
+            Reverts all unsaved changes to models.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IUnitOfWork`1.HasChanges">
+            <summary>
+            Returns <c>true</c> if there are pending changes to models; otherwise
+            <c>false</c>.
+            </summary>
+            <returns>
+            <c>true</c> if there are pending changes to models; otherwise <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IUnitOfWork`1.BeginTransaction">
+            <summary>
+            Begins a Database transaction. The calling code is resposible for calling <see
+            cref="M:System.Data.Entity.DbContextTransaction.Commit" /> or <see
+            cref="M:System.Data.Entity.DbContextTransaction.Rollback" />, and disposing the transaction object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IUnitOfWork`1.BeginTransaction(System.Data.IsolationLevel)">
+            <summary>
+            Begins a Database transaction. The calling code is resposible for calling <see
+            cref="M:System.Data.Entity.DbContextTransaction.Commit" /> or <see
+            cref="M:System.Data.Entity.DbContextTransaction.Rollback" />, and disposing the transaction object.
+            </summary>
+            <param name="isolationLevel">
+            The isolation level to use for the transaction.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.IUnitOfWork`1.GetRepository``1">
+            <summary>
+            Gets the repository for the specified entity model.
+            </summary>
+            <typeparam name="TEntity">The repository entity model.</typeparam>
+        </member>
+        <member name="T:Microsoft.MD.Common.Dal.Repository`1">
+            <summary>
+            Generic repository for database entities.
+            </summary>
+            <typeparam name="TEntity">The type of the entity.</typeparam>
+            <seealso cref="T:Microsoft.MD.Common.Dal.IRepository`1" />
+        </member>
+        <member name="P:Microsoft.MD.Common.Dal.Repository`1.Context">
+            <summary>
+            Gets the Database Context.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Dal.Repository`1.DbSet">
+            <summary>
+            Gets the Database Set.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.Repository`1.#ctor(System.Data.Entity.DbContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.Dal.Repository`1" /> class.
+            </summary>
+            <param name="context">The database context.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.Repository`1.Delete(`0)">
+            <summary>
+            Deletes the specified entity.
+            </summary>
+            <param name="entity">The entity.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.Repository`1.Delete(System.Object)">
+            <summary>
+            Deletes the entity with the specified Id.
+            </summary>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.Repository`1.Query">
+            <summary>
+            Gets an <see cref="T:System.Linq.IQueryable" /> of the data type, for use in building custom
+            LINQ queries.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.Repository`1.Query(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Gets the entities with the specified filter.
+            </summary>
+            <param name="filter">The filter.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.Repository`1.FindById(System.Object)">
+            <summary>
+            Gets an entity by Id.
+            </summary>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.Repository`1.FindByIdAsync(System.Object)">
+            <summary>
+            Gets an entity by Id.
+            </summary>
+            <param name="id">The identifier.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.Repository`1.FindWhere(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Gets the first item to match the filter expression.
+            </summary>
+            <param name="filter">The filter.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.Repository`1.FindWhereAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Gets the first item to match the filter expression.
+            </summary>
+            <param name="filter">The filter.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.Repository`1.Insert(`0)">
+            <summary>
+            Inserts the specified entity.
+            </summary>
+            <param name="entity">The entity.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.Repository`1.Update(`0)">
+            <summary>
+            Updates the specified entity.
+            </summary>
+            <param name="entity">The entity.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.Repository`1.RevertChanges(`0)">
+            <summary>
+            Reverts any changes made to the entity.
+            </summary>
+            <param name="entity">The entity to revert.</param>
+        </member>
+        <member name="T:Microsoft.MD.Common.Dal.UnitOfWork`1">
+            <summary>
+            Generic Repository for Database Context.
+            </summary>
+            <typeparam name="TContext">The type of the context.</typeparam>
+            <seealso cref="T:Microsoft.MD.Common.Dal.IUnitOfWork`1" />
+        </member>
+        <member name="P:Microsoft.MD.Common.Dal.UnitOfWork`1.Context">
+            <summary>
+            Gets or sets the database context.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.Dal.UnitOfWork`1" /> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.Initialize">
+            <summary>
+            Initializes this instance. Creates all repositories.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.Save">
+            <summary>
+            Saves all changes to data models.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.SaveAsync">
+            <summary>
+            Saves all changes to data models.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.SaveOrRevert">
+            <summary>
+            Save all changes to data models, or reverts all changes if a <see
+            cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" /> is thrown.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.SaveOrRevertAsync">
+            <summary>
+            Save all changes to data models, or reverts all changes if a <see
+            cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" /> is thrown.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.SaveAndOverwrite">
+            <summary>
+            On <see cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" />, overwrites the values in the
+            Database with the current model changes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.SaveAndOverwriteAsync">
+            <summary>
+            On <see cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" />, overwrites the values in the
+            Database with the current model changes.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.UpdateAndSaveForConcurrency``1(System.Int32,System.Action{``0},System.Int32)">
+            <summary>
+            Looks up the entity by Id and calls the <paramref name="updateCallback" />,
+            then Saves handling <see
+            cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" />
+            exceptions for the <paramref name="maxRetries" /> amount.
+            </summary>
+            <typeparam name="TEntity">The type of Entity being updated.</typeparam>
+            <param name="entityId">The Id of the Entity.</param>
+            <param name="updateCallback">
+            The callback that updates properties on the Entity.
+            </param>
+            <param name="maxRetries">
+            The maximum number of times to retry on <see
+            cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" /> exceptions.
+            </param>
+            <returns>The updated entity.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Repository for TEntity could not be found.
+            </exception>
+            <exception cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException">
+            Throws after max retries used.
+            </exception>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.UpdateAndSaveForConcurrency``1(System.Int32,System.Func{``0,System.Threading.Tasks.Task},System.Int32)">
+            <summary>
+            Looks up the entity by Id and calls the <paramref name="updateCallback" />,
+            then Saves handling <see
+            cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" />
+            exceptions for the <paramref name="maxRetries" /> amount.
+            </summary>
+            <typeparam name="TEntity">The type of Entity being updated.</typeparam>
+            <param name="entityId">The Id of the Entity.</param>
+            <param name="updateCallback">
+            The async callback that updates properties on the Entity.
+            </param>
+            <param name="maxRetries">
+            The maximum number of times to retry on <see
+            cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException" /> exceptions.
+            </param>
+            <returns>The updated entity.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Repository for TEntity could not be found.
+            </exception>
+            <exception cref="T:System.Data.Entity.Infrastructure.DbUpdateConcurrencyException">
+            Throws after max retries used.
+            </exception>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.RevertChanges">
+            <summary>
+            Reverts all unsaved changes to models. Not needed when using a transaction.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.HasChanges">
+            <summary>
+            Returns <c>true</c> if there are pending changes to models.
+            </summary>
+            <returns><c>true</c> if there are pending changes</returns>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.BeginTransaction">
+            <summary>
+            Begins a DB transaction. Calling code is resposible for calling Commit or
+            Rollback, and disposing the transaction object.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.BeginTransaction(System.Data.IsolationLevel)">
+            <summary>
+            Begins a DB transaction. Calling code is resposible for calling Commit or
+            Rollback, and disposing the transaction object.
+            </summary>
+            <param name="isolationLevel">
+            The isolation level to use for the transaction.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.GetRepository``1">
+            <summary>
+            Gets the repository for the specified entity model
+            </summary>
+            <typeparam name="TEntity">The repository entity model</typeparam>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or
+            resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing">
+            <c>true</c> if called from the <see cref="M:Microsoft.MD.Common.Dal.UnitOfWork`1.Dispose" /> method; otherwise
+            <c>false</c>.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Dal.UnitOfWork`1.Finalize">
+            <summary>
+            Finalizes an instance of the <see cref="T:Microsoft.MD.Common.Dal.UnitOfWork`1" /> class.
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.Common.APIException">
+            <summary>
+            Exceptions thrown from API Calls
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.APIException.StatusCode">
+            <summary>
+            The status code of the error result
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.APIException.#ctor(System.String,System.Net.HttpStatusCode)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.APIException" /> class.
+            </summary>
+            <param name="message">The message</param>
+            <param name="code">The status code</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.APIException.#ctor(System.String,System.Exception,System.Net.HttpStatusCode)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.APIException" /> class.
+            </summary>
+            <param name="message">The message</param>
+            <param name="innerException">The inner exception</param>
+            <param name="code">The status code</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.APIException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.APIException" /> class.
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds
+            the serialized object data about the exception being thrown.
+            </param>
+            <param name="context">
+            The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that holds
+            the contextual information about the source or destination.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.APIException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Gets information about the exception and adds it to the <see
+            cref="T:System.Runtime.Serialization.SerializationInfo" /> object.
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds
+            the serialized object data about the exception being thrown.
+            </param>
+            <param name="context">
+            The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that holds
+            the contextual information about the source or destination.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Exceptions.ProvisioningKickOffFailedException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Microsoft.MD.Common.Exceptions.ProvisioningKickOffFailedException" /> class.
+            </summary>
+            <param name="message">
+            The error message that explains the reason for the exception.
+            </param>
+            <param name="innerException">
+            The exception that is the cause of the current exception, or a null reference
+            (Nothing in Visual Basic) if no inner exception is specified.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Exceptions.ProvisioningKickOffFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see
+            cref="T:Microsoft.MD.Common.Exceptions.ProvisioningKickOffFailedException" /> class.
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds
+            the serialized object data about the exception being thrown.
+            </param>
+            <param name="context">
+            The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that
+            contains contextual information about the source or destination.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Exceptions.ProvisioningKickOffFailedException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            When overridden in a derived class, sets the <see
+            cref="T:System.Runtime.Serialization.SerializationInfo" /> with information
+            about the exception.
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds
+            the serialized object data about the exception being thrown.
+            </param>
+            <param name="context">
+            The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that
+            contains contextual information about the source or destination.
+            </param>
+        </member>
+        <member name="T:Microsoft.MD.Common.CertHttpClient">
+            <summary>
+            HttpClient that uses Certification Authentication automatically.
+            </summary>
+            <seealso cref="T:Microsoft.MD.Common.HttpClientEx" />
+        </member>
+        <member name="M:Microsoft.MD.Common.CertHttpClient.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.CertHttpClient"/> class.
+            </summary>
+            <param name="thumbprint">The thumbprint for the certificate.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.CertHttpClient.#ctor(System.String,System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.CertHttpClient"/> class.
+            </summary>
+            <param name="thumbprint">The thumbprint for the certificate.</param>
+            <param name="baseAddress">The base address.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.CertHttpClient.#ctor(System.String,System.Uri,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.CertHttpClient"/> class.
+            </summary>
+            <param name="thumbprint">The thumbprint for the certificate.</param>
+            <param name="baseAddress">The base address.</param>
+            <param name="acceptXml">If set to <c>true</c> sets the request header to accept XML, otherwise JSON.</param>
+        </member>
+        <member name="T:Microsoft.MD.Common.CertWebRequestHandler">
+            <summary>
+            Handles requests using certificate authentication
+            </summary>
+            <seealso cref="T:System.Net.Http.WebRequestHandler" />
+        </member>
+        <member name="M:Microsoft.MD.Common.CertWebRequestHandler.TryCacheCertificate(System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+            Tries to cache the provided certificate.
+            </summary>
+            <param name="certificate">The certificate to cache.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.CertWebRequestHandler.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.CertWebRequestHandler" /> class.
+            </summary>
+            <param name="thumbprint">The thumbprint for the certificate.</param>
+            <exception cref="T:System.InvalidOperationException">
+            The certificate could not be found.
+            </exception>
+        </member>
+        <member name="T:Microsoft.MD.Common.HttpClientEx">
+            <summary>
+            Extended Http Client
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.HttpClientEx.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.HttpClientEx"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.HttpClientEx.#ctor(System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.HttpClientEx"/> class.
+            </summary>
+            <param name="acceptXml">if set to <c>true</c> accept XML, <c>false</c> for JSON.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.HttpClientEx.#ctor(System.Net.Http.HttpMessageHandler)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.HttpClientEx"/> class.
+            </summary>
+            <param name="handler">The HTTP handler stack to use for sending requests.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.HttpClientEx.#ctor(System.Net.Http.HttpMessageHandler,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.HttpClientEx"/> class.
+            </summary>
+            <param name="handler">The handler.</param>
+            <param name="acceptXml">if set to <c>true</c> accept XML, <c>false</c> for JSON.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.HttpClientEx.#ctor(System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.HttpClientEx"/> class.
+            </summary>
+            <param name="baseAddress">The base address.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.HttpClientEx.#ctor(System.Uri,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.HttpClientEx"/> class.
+            </summary>
+            <param name="baseAddress">The base address.</param>
+            <param name="acceptXml">if set to <c>true</c> accept XML, <c>false</c> for JSON.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.HttpClientEx.#ctor(System.Net.Http.HttpMessageHandler,System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.HttpClientEx"/> class.
+            </summary>
+            <param name="handler">The handler.</param>
+            <param name="baseAddress">The base address.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.HttpClientEx.#ctor(System.Net.Http.HttpMessageHandler,System.Uri,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.HttpClientEx"/> class.
+            </summary>
+            <param name="handler">The handler.</param>
+            <param name="baseAddress">The base address.</param>
+            <param name="acceptXml">if set to <c>true</c> accept XML, <c>false</c> for JSON.</param>
+        </member>
+        <member name="T:Microsoft.MD.Common.Security.AzurePassword">
+            <summary>
+            Methods for helping with Azure Passwords
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Security.AzurePassword.IsValid(System.String)">
+            <summary>
+            Returns true if the password is valid for an Azure account, false and a message if it is not.
+            </summary>
+            <param name="password">The password.</param>
+        </member>
+        <member name="T:Microsoft.MD.Common.Telemetry.ConsoleEventTracker">
+            <summary>
+            Event Tracker that only logs to the console and NOT Application Insights
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.ConsoleEventTracker.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.Telemetry.ConsoleEventTracker" /> class.
+            Does not log to Application Insights
+            </summary>
+            <param name="eventName">Name of the event.</param>
+            <param name="method">
+            The method that created the EventTracker. Leave null to fill it in
+            automatically.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.ConsoleEventTracker.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.Telemetry.EventTracker" /> class.
+            Does not log to Application Insights
+            </summary>
+            <param name="appInsightsKey">The application insights key.</param>
+            <param name="eventName">Name of the event.</param>
+            <param name="method">
+            The method that created the EventTracker. Leave null to fill it in
+            automatically.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.ConsoleEventTracker.#ctor(Microsoft.ApplicationInsights.TelemetryClient,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.Telemetry.EventTracker" /> class.
+            Does not log to Application Insights
+            </summary>
+            <param name="parent">The parent TelemetryClient.</param>
+            <param name="eventName">Name of the event.</param>
+            <param name="method">
+            The method that created the EventTracker. Leave null to fill it in
+            automatically.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.ConsoleEventTracker.#ctor(Microsoft.MD.Common.Telemetry.IEventTracker,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.Telemetry.EventTracker" /> class.
+            Does not log to Application Insights
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="eventName">Name of the event.</param>
+            <param name="method">The method.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.ConsoleEventTracker.Exception(System.String,System.Exception,System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
+            <summary>
+            Logs the exception, with a message and any extra properties.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="ex">The ex.</param>
+            <param name="extraProperties">
+            Any extra properties to send that won't be added to the Event's properties.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.ConsoleEventTracker.TrackTrace(System.String,Microsoft.ApplicationInsights.DataContracts.SeverityLevel,System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
+            <summary>
+            Sends trace messages to Application Insights
+            </summary>
+            <param name="message"></param>
+            <param name="level"></param>
+            <param name="extraProperties"></param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.ConsoleEventTracker.SaveEvent">
+            <summary>
+            Saves the event to application insights
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.Common.Telemetry.DependencyTracker">
+            <summary>
+            Application Insights tracker for dependencies.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.DependencyTracker.Name">
+            <summary>
+            Gets the name of the dependency
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.DependencyTracker.Target">
+            <summary>
+            Gets the target.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.DependencyTracker.TypeName">
+            <summary>
+            Gets the type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.DependencyTracker.Data">
+            <summary>
+            Gets the data.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.DependencyTracker.Method">
+            <summary>
+            Gets the name of the method that created the tracker.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.DependencyTracker.EventId">
+            <summary>
+            Gets the event identifier - used as the Operation ID in App Insights.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.DependencyTracker.Client">
+            <summary>
+            Gets the telemetry client used to log to Application Insights.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.DependencyTracker.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.Telemetry.DependencyTracker"/> class.
+            </summary>
+            <param name="appInsightsKey">The application insights key.</param>
+            <param name="name">The name of the dependency.</param>
+            <param name="target">The target site.</param>
+            <param name="type">The type (HTTP/SQL/etc).</param>
+            <param name="data">The data (URL/Query/etc).</param>
+            <param name="method">The calling method.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.DependencyTracker.#ctor(System.String,System.Uri,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.Telemetry.DependencyTracker"/> class.
+            </summary>
+            <param name="name">The name of the dependency</param>
+            <param name="uri">The URI being called</param>
+            <param name="method">The calling method.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.DependencyTracker.CreateWithStackFrame(System.String,System.Uri,System.String,System.Int32)">
+            <summary>
+            Creates a new <see cref="T:Microsoft.MD.Common.Telemetry.DependencyTracker"/> using the stack to get the calling method.
+            </summary>
+            <param name="name">The name of the dependency</param>
+            <param name="uri">The URI being called</param>
+            <param name="type">The type of dependency (HTTP/CSOM)</param>
+            <param name="stackFrameNumber">The stack frame number to load the method info from</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.DependencyTracker.FromHttpWebRequest(System.String,System.Net.HttpWebRequest,System.Int32)">
+            <summary>
+            Creates a new <see cref="T:Microsoft.MD.Common.Telemetry.DependencyTracker"/> using the HttpWebRequest object
+            </summary>
+            <param name="name">The name of the dependency</param>
+            <param name="request">The HttpWebRequest to track</param>
+            <param name="stackFrameNumber">The stack frame number to load the method info from</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.DependencyTracker.FromHttpRequestMessage(System.String,System.Net.Http.HttpRequestMessage,System.Int32)">
+            <summary>
+            Creates a new <see cref="T:Microsoft.MD.Common.Telemetry.DependencyTracker"/> using the HttpRequestMessage object
+            </summary>
+            <param name="name">The name of the dependency</param>
+            <param name="request">The HttpRequestMessage to track</param>
+            <param name="stackFrameNumber">The stack frame number to load the method info from</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.DependencyTracker.End(System.String,System.Boolean)">
+            <summary>
+            Ends the dependency and saves to Application Insights.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.DependencyTracker.End(System.Net.HttpStatusCode)">
+            <summary>
+            Ends the dependency and saves to Application Insights.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.DependencyTracker.End(System.Net.HttpWebResponse)">
+            <summary>
+            Ends the dependency and saves to Application Insights.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.DependencyTracker.End(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Ends the dependency and saves to Application Insights.
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.Common.Telemetry.EventTracker">
+            <summary>
+            Tracks a custom event, for use with Application Insights.
+            </summary>
+            <remarks>
+            This class will start tracking start time and duration when it is created. All
+            telemetry sent with it will be tied to the same Operation ID.
+            </remarks>
+        </member>
+        <member name="F:Microsoft.MD.Common.Telemetry.EventTracker.watch">
+            <summary>
+            The stopwatch for the event
+            </summary>
+        </member>
+        <member name="F:Microsoft.MD.Common.Telemetry.EventTracker.properties">
+            <summary>
+            Dictionary of all properties for this event
+            </summary>
+        </member>
+        <member name="F:Microsoft.MD.Common.Telemetry.EventTracker.metrics">
+            <summary>
+            Dictionary of all metrics for this event
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.EventTracker.Name">
+            <summary>
+            Gets the name of the custom event.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.EventTracker.Method">
+            <summary>
+            Gets the name of the method that created the tracker.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.EventTracker.EventId">
+            <summary>
+            Gets the event identifier - used as the Operation ID in App Insights.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.EventTracker.Parent">
+            <summary>
+            Gets the parent event tracker. Used to coorelate with Operation Parent ID.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.EventTracker.Client">
+            <summary>
+            Gets the telemetry client used to log to Application Insights.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.Telemetry.EventTracker" /> class. Uses the
+            default App Insights Key from the config.
+            </summary>
+            <param name="eventName">Name of the event.</param>
+            <param name="method">
+            The method that created the EventTracker. Leave null to fill it in
+            automatically.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.Telemetry.EventTracker" /> class.
+            </summary>
+            <param name="appInsightsKey">The application insights key.</param>
+            <param name="eventName">Name of the event.</param>
+            <param name="method">
+            The method that created the EventTracker. Leave null to fill it in
+            automatically.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.#ctor(Microsoft.ApplicationInsights.TelemetryClient,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.Telemetry.EventTracker" /> class.
+            </summary>
+            <param name="parent">The parent TelemetryClient.</param>
+            <param name="eventName">Name of the event.</param>
+            <param name="method">
+            The method that created the EventTracker. Leave null to fill it in
+            automatically.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.#ctor(Microsoft.MD.Common.Telemetry.IEventTracker,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.Common.Telemetry.EventTracker" /> class.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="eventName">Name of the event.</param>
+            <param name="method">The method.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.EndEvent">
+            <summary>
+            Ends the event and saves to Application Insights.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.SetProperty(System.String,System.String)">
+            <summary>
+            Adds or Updates the custom property value.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.SetProperty(System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
+            <summary>
+            Adds of updates the custom property values.
+            </summary>
+            <param name="pairs">The pairs. Use Pair.Of() method as shorthand.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.SetMetric(System.String,System.Double)">
+            <summary>
+            Adds or updates the custom metric value.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.SetMetric(System.Collections.Generic.KeyValuePair{System.String,System.Double}[])">
+            <summary>
+            Sets the custom metric value.
+            </summary>
+            <param name="pairs">The pairs. Use Pair.Of() method as shorthand.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.SetMetric(System.String,System.Int32)">
+            <summary>
+            Adds or updates the custom metric value.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.SetMetric(System.Collections.Generic.KeyValuePair{System.String,System.Int32}[])">
+            <summary>
+            Sets the custom metric value.
+            </summary>
+            <param name="pairs">The pairs. Use Pair.Of() method as shorthand.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.IncrementMetric(System.String,System.Double)">
+            <summary>
+            Increments the custom metric value.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="amount">The amount.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.Debug(System.String)">
+            <summary>
+            Logs the specified debug message.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.Info(System.String)">
+            <summary>
+            Logs the specified information message.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.Warning(System.String)">
+            <summary>
+            Logs the specified warning message.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.Warning(System.String,System.Exception,System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
+            <summary>
+            Logs the specified warning message with exception details.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="ex">The exception</param>
+            <param name="extraProperties">
+            Any extra properties to send that won't be added to the Event's properties.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.Exception(System.String,System.Exception,System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
+            <summary>
+            Logs the exception, with a message and any extra properties.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="ex">The ex.</param>
+            <param name="extraProperties">
+            Any extra properties to send that won't be added to the Event's properties.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.Metric(System.String,System.Double)">
+            <summary>
+            Logs the specified global metric, not added to the event metrics.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.TrackTrace(System.String,Microsoft.ApplicationInsights.DataContracts.SeverityLevel,System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
+            <summary>
+            Sends trace messages to Application Insights
+            </summary>
+            <param name="message"></param>
+            <param name="level"></param>
+            <param name="extraProperties"></param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.EventTracker.SaveEvent">
+            <summary>
+            Saves the event to application insights
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.IDependencyTracker.Name">
+            <summary>
+            Gets the name of the dependency
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.IDependencyTracker.Target">
+            <summary>
+            Gets the target.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.IDependencyTracker.TypeName">
+            <summary>
+            Gets the type.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.IDependencyTracker.Data">
+            <summary>
+            Gets the data.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.IDependencyTracker.Method">
+            <summary>
+            Gets the name of the method that created the tracker.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.IDependencyTracker.EventId">
+            <summary>
+            Gets the event identifier - used as the Operation ID in App Insights.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.IDependencyTracker.Client">
+            <summary>
+            Gets the telemetry client used to log to Application Insights.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IDependencyTracker.End(System.String,System.Boolean)">
+            <summary>
+            Ends the dependency and saves to Application Insights.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IDependencyTracker.End(System.Net.HttpStatusCode)">
+            <summary>
+            Ends the dependency and saves to Application Insights.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IDependencyTracker.End(System.Net.HttpWebResponse)">
+            <summary>
+            Ends the dependency and saves to Application Insights.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IDependencyTracker.End(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Ends the dependency and saves to Application Insights.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.IEventTracker.Name">
+            <summary>
+            Gets the name of the custom event.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.IEventTracker.Method">
+            <summary>
+            Gets the name of the method that created the tracker.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.IEventTracker.EventId">
+            <summary>
+            Gets the event identifier - used as the Operation ID in App Insights.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.IEventTracker.Parent">
+            <summary>
+            Gets the parent event tracker. Used to coorelate with Operation Parent ID.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Telemetry.IEventTracker.Client">
+            <summary>
+            Gets the telemetry client used to log to Application Insights.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IEventTracker.EndEvent">
+            <summary>
+            Ends the event and saves to Application Insights.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IEventTracker.SetProperty(System.String,System.String)">
+            <summary>
+            Adds or Updates the custom property value.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IEventTracker.SetProperty(System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
+            <summary>
+            Adds of updates the custom property values.
+            </summary>
+            <param name="pairs">The pairs. Use Pair.Of() method as shorthand.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IEventTracker.SetMetric(System.String,System.Double)">
+            <summary>
+            Adds or updates the custom metric value.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IEventTracker.SetMetric(System.Collections.Generic.KeyValuePair{System.String,System.Double}[])">
+            <summary>
+            Sets the custom metric value.
+            </summary>
+            <param name="pairs">The pairs. Use Pair.Of() method as shorthand.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IEventTracker.SetMetric(System.String,System.Int32)">
+            <summary>
+            Adds or updates the custom metric value.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IEventTracker.SetMetric(System.Collections.Generic.KeyValuePair{System.String,System.Int32}[])">
+            <summary>
+            Sets the custom metric value.
+            </summary>
+            <param name="pairs">The pairs. Use Pair.Of() method as shorthand.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IEventTracker.IncrementMetric(System.String,System.Double)">
+            <summary>
+            Increments the custom metric value.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="amount">The amount.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IEventTracker.Debug(System.String)">
+            <summary>
+            Logs the specified debug message.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IEventTracker.Info(System.String)">
+            <summary>
+            Logs the specified information message.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IEventTracker.Warning(System.String)">
+            <summary>
+            Logs the specified warning message.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IEventTracker.Warning(System.String,System.Exception,System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
+            <summary>
+            Logs the specified warning message with exception details.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="ex">The exception</param>
+            <param name="extraProperties">Any extra properties to send that won't be added to the Event's properties.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IEventTracker.Exception(System.String,System.Exception,System.Collections.Generic.KeyValuePair{System.String,System.String}[])">
+            <summary>
+            Logs the exception, with a message and any extra properties.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="ex">The ex.</param>
+            <param name="extraProperties">Any extra properties to send that won't be added to the Event's properties.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.IEventTracker.Metric(System.String,System.Double)">
+            <summary>
+            Logs the specified global metric, not added to the event metrics.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="T:Microsoft.MD.Common.Telemetry.TelemetryConfigHelper">
+            <summary>
+            Helper methods for configuring application insights
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Telemetry.TelemetryConfigHelper.GetAppInsightsKey">
+            <summary>
+            Gets the application insights key from either the Active configuration or Configuration Manager
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.Common.Utilities.AppSettings">
+            <summary>
+                Will return config value associated to name paramater
+                Will check in the Cloud Configuration file first for a matching setting
+                Next will check the app config file for a matching setting
+                Finally will check in the app config for a matching connection string
+                <param name="name"> Holds the setting key value to search for.</param>
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.Conversions.IntToBase(System.Int64,System.Int32)">
+            <summary>
+            Converts the given decimal number to the numeral system with the
+            specified radix (in the range [2, 36]).
+            From stackoverflow http://stackoverflow.com/questions/923771
+            </summary>
+            <param name="decimalNumber">The number to convert.</param>
+            <param name="radix">The radix of the destination numeral system (in the range [2, 36]).</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.Conversions.BaseToInt(System.String,System.Int32)">
+            <summary>
+            Convert from arbitrary base (range [2, 36]) into Int64
+            </summary>
+            <param name="input"></param>
+            <param name="radix"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.LoremIpsumGenerator.Generate(System.UInt32,System.UInt32,System.Boolean)">
+            <summary>
+            Generates a random string with Lorem Ipsum content.
+            </summary>
+            <param name="numWordsToGenerate">Number of words to generate. Defaults to 300.</param>
+            <param name="paragraphLength">Default number of words in a paragraph. Defaults to 100.</param>
+            <param name="formatParagraphs">Flags whether to end paragraphs with the environment's newline character. Defaults to True.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.LoremIpsumGenerator.GenerateHtml(System.UInt32,System.UInt32,System.Boolean,System.String)">
+            <summary>
+            Generates a random string of HTML with Lorem Ipsum content.
+            </summary>
+            <param name="numWordsToGenerate">Number of words to generate. Defaults to 300.</param>
+            <param name="paragraphLength">Default number of words in a paragraph. Defaults to 100.</param>
+            <param name="formatParagraphs">Flags whether to format the paragraphs with the passed CSS class.</param>
+            <param name="cssClass">The CSS class to apply. Defaults to an empty string.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.MD.Common.Utilities.RandomStringArrayTool">
+            <summary>
+            Slow but reliable method for randomizing string array
+            </summary>
+        </member>
+        <member name="F:Microsoft.MD.Common.Utilities.RandomStringArrayTool._random">
+            <summary>
+            Stores the current random number
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.RandomStringArrayTool.RandomizeStrings(System.String[])">
+            <summary>
+            Return randomized version of the string array
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.Common.Utilities.Retry">
+            <summary>
+            Utility method for retry logic.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.Retry.Block(System.Int32,System.Int32,System.Action,System.Collections.Generic.IEnumerable{System.Exception})">
+            <summary>
+            Retries the block of code.
+            </summary>
+            <param name="retries">The max number of retries.</param>
+            <param name="secsDelay">The seconds to delay between tries.</param>
+            <param name="retryBlock">The retry Action Block.</param>
+            <param name="nonRetryExceptions">Exceptions that will stop retrying.</param>
+        </member>
+        <member name="T:Microsoft.MD.Common.Utilities.RetryBehavior">
+            <summary>
+            Retry Behaviors
+            </summary>
+        </member>
+        <member name="F:Microsoft.MD.Common.Utilities.RetryBehavior.FailWithException">
+            <summary>
+            Fail immediately by throwning an Exception or Aggregate Exception.
+            </summary>
+        </member>
+        <member name="F:Microsoft.MD.Common.Utilities.RetryBehavior.FailWithDefaultValue">
+            <summary>
+            Fail immediately by returning the default value.
+            </summary>
+        </member>
+        <member name="F:Microsoft.MD.Common.Utilities.RetryBehavior.Retry">
+            <summary>
+            Retry after the normal delay; the delay will be increased with each subsequent
+            retry.
+            </summary>
+        </member>
+        <member name="F:Microsoft.MD.Common.Utilities.RetryBehavior.RetryImmediately">
+            <summary>
+            Retry immediately, without any delay; the delay will not be increased for
+            future <see cref="F:Microsoft.MD.Common.Utilities.RetryBehavior.Retry" /> behaviors, but it also won't be decreased.
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.Common.Utilities.Retryer">
+            <summary>
+            A Retry class using a fluent API.
+            Example: Retryer.Setup(() =&gt; { /*work*/
+                     }).Max(5).Delay(TimeSpan.FromSeconds(5)).RetryOn(typeof(NetworkException)).Start();
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.Retryer.Setup(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Entry point to fluent api.
+            </summary>
+            <param name="asyncAction">The action to be retried.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.Retryer.Max(System.Int32)">
+            <summary>
+            Sets the maximum number of retries, default is 5
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.Retryer.Delay(System.TimeSpan)">
+            <summary>
+            Sets the starting delay between retries, default is 10 milliseconds
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.Retryer.BreakOn``1">
+            <summary>
+            Sets the exception types to stop retrying on. Ignored when RetryOn is used.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.Retryer.FilterOn``1(System.Func{``0,System.Int32,System.Nullable{Microsoft.MD.Common.Utilities.RetryBehavior}})">
+            <summary>
+            Sets a custom exception filter.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.Retryer.RetryOn``1">
+            <summary>
+            Sets the exception types that cause a retry, other exceptions will be thrown.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.Retryer.DelayRamp(System.Double,System.Double)">
+            <summary>
+            Sets the minimum and maximum ramp scaling. Will multiply by the last delay
+            value. Default is 1.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.Retryer.Start">
+            <summary>
+            Starts the retry process following the rules set in the fluent API.
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.Common.Utilities.RetryUtility">
+            <summary>
+            Retry Utility
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Utilities.RetryUtility.MaximumAttemptCount">
+            <summary>
+            Gets or sets the maximum attempt count.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Utilities.RetryUtility.InitialRetryInterval">
+            <summary>
+            Gets or sets the initial retry interval.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Utilities.RetryUtility.MaximumRetryInterval">
+            <summary>
+            Gets or sets the maximum retry interval.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Utilities.RetryUtility.DefaultCancellationBehavior">
+            <summary>
+            Gets or sets the default cancellation behavior.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Utilities.RetryUtility.MinimumScaleFactor">
+            <summary>
+            Gets or sets the minimum scale factor.
+            </summary>
+            <remarks>
+            During a <see cref="F:Microsoft.MD.Common.Utilities.RetryBehavior.Retry" /> the delay would be scaled up by at
+            least this amount (but not more than <see cref="P:Microsoft.MD.Common.Utilities.RetryUtility.MaximumRetryInterval" />).
+            </remarks>
+        </member>
+        <member name="P:Microsoft.MD.Common.Utilities.RetryUtility.MaximumScaleFactor">
+            <summary>
+            Gets or sets the maximum scale factor.
+            </summary>
+            <value>
+            During a <see cref="F:Microsoft.MD.Common.Utilities.RetryBehavior.Retry" /> the delay would not be scaled up by
+            more than this amount.
+            </value>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.RetryUtility.ConfigureDefault(Microsoft.MD.Common.Utilities.RetryBehavior)">
+            <summary>
+            Configures the default retry behavior.
+            </summary>
+            <param name="behavior">The new default retry behavior.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.RetryUtility.Configure``1(Microsoft.MD.Common.Utilities.RetryBehavior)">
+            <summary>
+            Configures the retry behavior for the specified type.
+            </summary>
+            <typeparam name="ExType">
+            The specified type to configure the behavior for.
+            </typeparam>
+            <param name="behavior">The retry behavior.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.RetryUtility.Configure``1(System.Func{``0,System.Int32,System.Nullable{Microsoft.MD.Common.Utilities.RetryBehavior}})">
+            <summary>
+            Configures custom retry behavior for the specified type.
+            </summary>
+            <typeparam name="ExType">
+            The specified type to configure the behavior for.
+            </typeparam>
+            <param name="customBehavior">The custom retry behavior.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.RetryUtility.ConfigureMaximumAttemptCountFailure(Microsoft.MD.Common.Utilities.RetryBehavior)">
+            <summary>
+            Configures the retry behavior for when the maximum attempt count is reached.
+            </summary>
+            <param name="behavior">The retry behavior.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.RetryUtility.ExecuteWithRetryAsync(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Executes the specified asynchronous operation with the configured retry
+            behaviors.
+            </summary>
+            <param name="operation">The specified operation.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The result of the specified operation.</returns>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.RetryUtility.ExecuteWithRetryAsync(System.Func{System.Int32,System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Executes the specified asynchronous operation with the configured retry
+            behaviors.
+            </summary>
+            <param name="operation">The specified operation.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The result of the specified operation.</returns>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.RetryUtility.ExecuteWithRetryAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)">
+            <summary>
+            Executes the specified asynchronous operation with the configured retry
+            behaviors.
+            </summary>
+            <typeparam name="T">The operation's return type.</typeparam>
+            <param name="operation">The specified operation.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The result of the specified operation.</returns>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.RetryUtility.ExecuteWithRetryAsync``1(System.Func{System.Int32,System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)">
+            <summary>
+            Executes the specified asynchronous operation with the configured retry
+            behaviors.
+            </summary>
+            <typeparam name="T">The operation's return type.</typeparam>
+            <param name="operation">The specified operation.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The result of the specified operation.</returns>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.RetryUtility.ExecuteWithRetry(System.Action,System.Threading.CancellationToken)">
+            <summary>
+            Executes the specified operation with the configured retry behaviors.
+            </summary>
+            <param name="operation">The specified operation.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.RetryUtility.ExecuteWithRetry(System.Action{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Executes the specified operation with the configured retry behaviors.
+            </summary>
+            <param name="operation">The specified operation.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.RetryUtility.ExecuteWithRetry``1(System.Func{``0},System.Threading.CancellationToken)">
+            <summary>
+            Executes the specified operation with the configured retry behaviors.
+            </summary>
+            <typeparam name="T">The operation's return type.</typeparam>
+            <param name="operation">The specified operation.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.RetryUtility.ExecuteWithRetry``1(System.Func{System.Int32,``0},System.Threading.CancellationToken)">
+            <summary>
+            Executes the specified operation with the configured retry behaviors.
+            </summary>
+            <typeparam name="T">The operation's return type.</typeparam>
+            <param name="operation">The specified operation.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The result of the specified operation.</returns>
+        </member>
+        <member name="T:Microsoft.MD.Common.Utilities.TaskRunType">
+            <summary>
+            The type of run method to use for the task.
+            </summary>
+        </member>
+        <member name="F:Microsoft.MD.Common.Utilities.TaskRunType.OnceOnly">
+            <summary>
+            Only run the task once.
+            </summary>
+        </member>
+        <member name="F:Microsoft.MD.Common.Utilities.TaskRunType.Continuous">
+            <summary>
+            Run the task until cancelled.
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.Common.Utilities.TaskRunnerItem">
+            <summary>
+            Used to track a running task
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.Common.Utilities.TaskRunner">
+            <summary>
+            Runs tasks from a non-async method.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.Common.Utilities.TaskRunner.IsRunning">
+            <summary>
+            Gets a value indicating whether this instance is running.
+            </summary>
+            <value>
+              <c>true</c> if this instance is running; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.TaskRunner.AddTask(System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task},Microsoft.MD.Common.Utilities.TaskRunType,System.TimeSpan)">
+            <summary>
+            Adds the task to the list of tasks to run.
+            </summary>
+            <param name="method">A method that takes a cancellation token and returns a task.</param>
+            <param name="runType">The type of task to run.</param>
+            <param name="delayAfter">The delay to wait between runs of the task</param>
+            <exception cref="T:System.ArgumentNullException">method</exception>
+            <exception cref="T:System.InvalidOperationException">Tasks cannot be added while others are already running.</exception>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.TaskRunner.RunContinuous(System.Threading.CancellationToken,System.Action{System.Exception})">
+            <summary>
+            Starts running the tasks. Will block until all tasks finish, or the cancellation token is set.
+            </summary>
+            <param name="token">The cancellation token.</param>
+            <param name="exceptionCallback">The exception callback.</param>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.Validation.ModelIsValid(System.Object)">
+            <summary>
+            Returns whether the passed object is valid.
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.MD.Common.Utilities.Validation.IsValidEmailAddress(System.String)">
+            <summary>
+            Returns whether the passed email address appears valid.
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.MD.Common.Validation.EmailValidation">
+            <summary>
+            Methods for validating email addresses.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Common.Validation.EmailValidation.IsValid(System.String,System.Boolean)">
+            <summary>
+            Returns true if the email address is valid.
+            </summary>
+            <param name="emailAddress">The email address to validate.</param>
+            <param name="performHostValidation">
+            <c>true</c> to verify that the host of the email address is a real domain
+            (requires internet); <c>false</c> to perform only format checking.
+            </param>
+            <returns>
+            <c>true</c> if the specified email address is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:Microsoft.MD.ValidationException">
+            <summary>
+            A standard Exception-derived class that represents an exception in validation
+            logic.
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.ValidationException.InnerExceptions">
+            <summary>
+            Gets or sets the inner exceptions.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.ValidationException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.ValidationException" /> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.ValidationException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.ValidationException" /> class.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:Microsoft.MD.ValidationException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.ValidationException" /> class.
+            </summary>
+            <param name="message">
+            The error message that explains the reason for the exception.
+            </param>
+            <param name="innerException">
+            The exception that is the cause of the current exception, or a null reference
+            (Nothing in Visual Basic) if no inner exception is specified.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.ValidationException.#ctor(System.String,System.Collections.Generic.IEnumerable{System.Exception})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.ValidationException" /> class.
+            </summary>
+            <param name="message">The message.</param>
+            <param name="innerExceptions">The inner exceptions.</param>
+        </member>
+        <member name="M:Microsoft.MD.ValidationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.MD.ValidationException" /> class.
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds
+            the serialized object data about the exception being thrown.
+            </param>
+            <param name="context">
+            The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that
+            contains contextual information about the source or destination.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.ValidationException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            When overridden in a derived class, sets the <see
+            cref="T:System.Runtime.Serialization.SerializationInfo" /> with information
+            about the exception.
+            </summary>
+            <param name="info">
+            The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds
+            the serialized object data about the exception being thrown.
+            </param>
+            <param name="context">
+            The <see cref="T:System.Runtime.Serialization.StreamingContext" /> that
+            contains contextual information about the source or destination.
+            </param>
+        </member>
+        <member name="T:Microsoft.MD.CollectionExtensions">
+            <summary>
+            Extension Methods for collections and enumerables
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.CollectionExtensions.AddItems``2(System.Collections.Generic.ICollection{``0},``1[])">
+            <summary>
+            Adds the specified items to the collection.
+            </summary>
+            <typeparam name="TEntity">
+            The type of elements stored in the collection.
+            </typeparam>
+            <typeparam name="SEntity">
+            The type of elements to add to the collection.
+            </typeparam>
+            <param name="collection">
+            The collection that should have the provided items added to it.
+            </param>
+            <param name="items">The items that should be added to the collection.</param>
+        </member>
+        <member name="M:Microsoft.MD.CollectionExtensions.AddRange``2(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            Adds the elements of the specified collection to the end of the <see
+            cref="T:System.Collections.Generic.ICollection`1" />.
+            </summary>
+            <typeparam name="TEntity">
+            The type of elements stored in the collection.
+            </typeparam>
+            <typeparam name="SEntity">
+            The type of elements to add to the collection.
+            </typeparam>
+            <param name="collection">
+            The collection that should have the provided elements added to it.
+            </param>
+            <param name="elements">
+            The elements that should be added to the collection.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.CollectionExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            Performs the Action for each item in the list.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.CollectionExtensions.ForEachAsync``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task})">
+            <summary>
+            Performs the body function for each item in the list, using mutliple threads
+            (Environment.ProcessorCount). Will continue processing items on exception,
+            throwing an aggregate exception at the end if any occured.
+            </summary>
+            <typeparam name="TEntity">The type of the entity.</typeparam>
+            <param name="source">The source enumerable.</param>
+            <param name="body">The function body to run.</param>
+            <exception cref="T:System.AggregateException">
+            Exceptions thrown by any function body call.
+            </exception>
+        </member>
+        <member name="M:Microsoft.MD.CollectionExtensions.ForEachAsync``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Func{``0,System.Threading.Tasks.Task})">
+            <summary>
+            Performs the body function for each item in the list, using mutliple threads as
+            defined in degreeOfParallelism. Will continue processing items on exception,
+            throwing an aggregate exception at the end if any occured.
+            </summary>
+            <typeparam name="TEntity">The type of the entity.</typeparam>
+            <param name="source">The source enumerable.</param>
+            <param name="degreeOfParallelism">The degree of parallelism.</param>
+            <param name="body">The function body to run.</param>
+            <exception cref="T:System.AggregateException">
+            Exceptions thrown by any function body call.
+            </exception>
+        </member>
+        <member name="M:Microsoft.MD.CollectionExtensions.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``1,``1,System.Int32})">
+            <summary>
+            Sorts the elements of a sequence in ascending order by using a specified
+            comparison delegate
+            </summary>
+            <param name="source">The source enumerable.</param>
+            <param name="keySelector">A function to extract a key from an element</param>
+            <param name="comparison">A function to compare key values</param>
+        </member>
+        <member name="M:Microsoft.MD.CollectionExtensions.OrderByDescending``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``1,``1,System.Int32})">
+            <summary>
+            Sorts the elements of a sequence in descending order by using a specified
+            comparison delegate
+            </summary>
+            <param name="source">The source enumerable.</param>
+            <param name="keySelector">A function to extract a key from an element</param>
+            <param name="comparison">A function to compare key values</param>
+        </member>
+        <member name="M:Microsoft.MD.CollectionExtensions.NotIn``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.ICollection{``0},System.String)">
+            <summary>
+            Returns a list with the elements not contained in the paramater notInCollection
+            List
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="collection"></param>
+            <param name="notInCollection"></param>
+            <param name="entityKey"></param>
+        </member>
+        <member name="T:Microsoft.MD.DateTimeExtensions">
+            <summary>
+            Extensions to the DateTime class
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.DateTimeExtensions.Between(System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Returns <c>true</c> if the date is equal to or between the start and end dates.
+            </summary>
+            <param name="date">The date.</param>
+            <param name="start">The start date.</param>
+            <param name="end">The end date.</param>
+        </member>
+        <member name="M:Microsoft.MD.DateTimeExtensions.IsOlderThan(System.DateTime,System.TimeSpan)">
+            <summary>
+            Determines whether a given <see cref="T:System.DateTime" /> is beyond a given age.
+            </summary>
+            <param name="input">The input.</param>
+            <param name="length">The length to compare the age to.</param>
+        </member>
+        <member name="M:Microsoft.MD.DateTimeExtensions.IsOlderThan(System.Nullable{System.DateTime},System.TimeSpan,System.Boolean)">
+            <summary>
+            Determines whether a given <see cref="T:System.DateTime" /> is beyond a given age.
+            </summary>
+            <param name="input">The input.</param>
+            <param name="length">The length to compare the age to.</param>
+            <param name="defaultValue">
+            The value to return if the <paramref name="input" /> is <c>null</c> or <see
+            cref="F:System.DateTime.MinValue" />.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.DateTimeExtensions.FloorDateTime(System.DateTime)">
+            <summary>
+            Floors a given <see cref="T:System.DateTime" /> value to the nearest 30 second interval.
+            </summary>
+            <param name="input">The input.</param>
+        </member>
+        <member name="M:Microsoft.MD.DateTimeExtensions.FloorDateTime(System.Nullable{System.DateTime})">
+            <summary>
+            Floors a given <see cref="T:System.DateTime" /> value to the nearest 30 second interval.
+            </summary>
+            <param name="input">The input.</param>
+        </member>
+        <member name="M:Microsoft.MD.DateTimeExtensions.IsNullOrMinValue(System.Nullable{System.DateTime})">
+            <summary>
+            Determines whether a given DateTime? is <c>null</c> or <see
+            cref="F:System.DateTime.MinValue" />.
+            </summary>
+            <param name="input">The input.</param>
+        </member>
+        <member name="M:Microsoft.MD.DateTimeExtensions.IsNullOrMinValue(System.DateTime)">
+            <summary>
+            Determines whether a given DateTime is <see cref="F:System.DateTime.MinValue" />.
+            </summary>
+            <param name="input">The input.</param>
+        </member>
+        <member name="T:Microsoft.MD.DictionaryExtensions">
+            <summary>
+            Extension methods for Dictionary
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.DictionaryExtensions.AddOrUpdate``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.KeyValuePair{``0,``1})">
+            <summary>
+            Updates the key/value if it exists, otherwise adds it to the dictionary.
+            </summary>
+            <typeparam name="TKey">The key type</typeparam>
+            <typeparam name="TValue">The value type</typeparam>
+            <param name="dictionary">The source dictionary</param>
+            <param name="item">The item to add or update</param>
+        </member>
+        <member name="M:Microsoft.MD.DictionaryExtensions.AddOrUpdateRange``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
+            <summary>
+            For each item, updates the key/value if it exists, otherwise adds it to the
+            dictionary.
+            </summary>
+            <typeparam name="TKey">The key type</typeparam>
+            <typeparam name="TValue">The value type</typeparam>
+            <param name="dictionary">The source dictionary</param>
+            <param name="items">The list of items to add or update</param>
+        </member>
+        <member name="T:Microsoft.MD.EnumExtensions">
+            <summary>
+            Extension methods for working with Enums
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.EnumExtensions.Has``1(System.Enum,``0)">
+            <summary>
+            Tells if an Enum flag is set
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.EnumExtensions.Is``1(System.Enum,``0)">
+            <summary>
+            Tells if an enum is only the one value
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.EnumExtensions.Add``1(System.Enum,``0)">
+            <summary>
+            Adds the value to a Flags enum
+            </summary>
+            <returns>New enum with the flag set</returns>
+        </member>
+        <member name="M:Microsoft.MD.EnumExtensions.Remove``1(System.Enum,``0)">
+            <summary>
+            Removes the value from a Flags enum
+            </summary>
+            <returns>New enum with the flag not set</returns>
+        </member>
+        <member name="M:Microsoft.MD.GenericExtensions.IsAnyOf``1(``0,``0[])">
+            <summary>
+            Checks a value against a list of possible matches, returns true if it matches one.
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.GuidExtensions">
+            <summary>
+            Extension methods for the Guid class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.GuidExtensions.ToFriendlyString(System.Guid)">
+            <summary>
+            Creates a unique identifier as a Base64 encoded Guid, with padding removed and '/' and '+' replaced to be web friendly.
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.NullableExtensions">
+            <summary>
+            Holds extensions for the Nullable class
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.NullableExtensions.ValueOrDefault``1(System.Nullable{``0},``0)">
+            <summary>
+            Returns the value if there is one, otherwise returns the default value.
+            </summary>
+            <typeparam name="T">Nullable Type</typeparam>
+            <param name="nullable">The nullable instance</param>
+            <param name="defaultValue">The default value if null</param>
+        </member>
+        <member name="M:Microsoft.MD.NullableExtensions.IsTrue(System.Nullable{System.Boolean})">
+            <summary>
+            Returns true if the nullable bool is not null and set to true.
+            </summary>
+            <param name="nullable">The nullable bool.</param>
+        </member>
+        <member name="M:Microsoft.MD.NullableExtensions.IsFalse(System.Nullable{System.Boolean})">
+            <summary>
+            Returns true if the nullable bool is not null and set to false.
+            </summary>
+            <param name="nullable">The nullable bool.</param>
+        </member>
+        <member name="T:Microsoft.MD.NumberExtensions">
+            <summary>
+            Extensions for int, float, etc.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.NumberExtensions.ToStringInvariant(System.Int32)">
+            <summary>
+            Calls int.ToString(CultureInfo.InvariantCulture)
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.NumberExtensions.ToStringInvariant(System.Int32,System.String)">
+            <summary>
+            Calls int.ToString(format, CultureInfo.InvariantCulture)
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.NumberExtensions.ToStringCurrent(System.Int32)">
+            <summary>
+            Calls int.ToString(CultureInfo.CurrentCulture)
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.NumberExtensions.ToStringCurrent(System.Int32,System.String)">
+            <summary>
+            Calls int.ToString(format, CultureInfo.CurrentCulture)
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.NumberExtensions.ToStringInvariant(System.Int64)">
+            <summary>
+            Calls int.ToString(CultureInfo.InvariantCulture)
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.NumberExtensions.ToStringInvariant(System.Int64,System.String)">
+            <summary>
+            Calls int.ToString(format, CultureInfo.InvariantCulture)
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.NumberExtensions.ToStringCurrent(System.Int64)">
+            <summary>
+            Calls int.ToString(CultureInfo.CurrentCulture)
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.NumberExtensions.ToStringCurrent(System.Int64,System.String)">
+            <summary>
+            Calls int.ToString(format, CultureInfo.CurrentCulture)
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.NumberExtensions.ToStringInvariant(System.Single)">
+            <summary>
+            Calls int.ToString(CultureInfo.InvariantCulture)
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.NumberExtensions.ToStringInvariant(System.Single,System.String)">
+            <summary>
+            Calls int.ToString(format, CultureInfo.InvariantCulture)
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.NumberExtensions.ToStringCurrent(System.Single)">
+            <summary>
+            Calls int.ToString(CultureInfo.CurrentCulture)
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.NumberExtensions.ToStringCurrent(System.Single,System.String)">
+            <summary>
+            Calls int.ToString(format, CultureInfo.CurrentCulture)
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.NumberExtensions.ToFileSize(System.Int64)">
+            <summary>
+            Converts a Long to a File Size String.
+            Examples: 10 bytes; 5MB; 12TB
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.Pair">
+            <summary>
+            Class that provides shorthand methods for creating KeyValuePairs
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Pair.Of``2(``0,``1)">
+            <summary>
+            Creates a Pair Of the key and value [i.e. KeyValuePair]
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.MD.RandomExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Random" />.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.RandomExtensions.NextLong(System.Random)">
+            <summary>
+            Returns a non-negative random long.
+            </summary>
+            <param name="rnd">The pseudo-random number generator.</param>
+        </member>
+        <member name="M:Microsoft.MD.RandomExtensions.NextLong(System.Random,System.Int64)">
+            <summary>
+            Returns a non-negative random long that is within a specified range.
+            </summary>
+            <param name="rnd">The pseudo-random number generator.</param>
+            <param name="max">
+            The exclusive upper bound of the random number returned.
+            </param>
+        </member>
+        <member name="M:Microsoft.MD.RandomExtensions.NextLong(System.Random,System.Int64,System.Int64)">
+            <summary>
+            Returns a non-negative random long that is within a specified range.
+            </summary>
+            <param name="rnd">The pseudo-random number generator.</param>
+            <param name="min">
+            The inclusive lower bound of the random number returned.
+            </param>
+            <param name="max">
+            The exclusive upper bound of the random number returned.
+            </param>
+        </member>
+        <member name="T:Microsoft.MD.ReflectionExtensions">
+            <summary>
+            Extension Methods related to Reflection.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.ReflectionExtensions.GetAllInstanceFields(System.Type)">
+            <summary>
+            Gets all of the instance fields for a given type.
+            </summary>
+            <param name="type">The type to get all fields for.</param>
+        </member>
+        <member name="T:Microsoft.MD.SecureStringExtensions">
+            <summary>
+            Extension Methods for working with the <see cref="T:System.Security.SecureString" /> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.SecureStringExtensions.ToInsecureString(System.Security.SecureString)">
+            <summary>
+            Converts a <see cref="T:System.Security.SecureString" /> into a <see cref="T:System.String" />.
+            </summary>
+            <param name="input">The input <see cref="T:System.Security.SecureString" />.</param>
+            <remarks>
+            WARNING: Although we do our best to keep the unmanaged data secure according to
+                     MSDN guidelines, due to the inherent immutability of the <see
+                     cref="T:System.String" /> class this process is NOT secure and defeats the
+                     purpose of using the <see cref="T:System.Security.SecureString" /> class.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.MD.SecureStringExtensions.ToSecureString(System.String)">
+            <summary>
+            Converts a <see cref="T:System.String" /> into a <see cref="T:System.Security.SecureString" />.
+            </summary>
+            <param name="input">The input <see cref="T:System.String" />.</param>
+            <remarks>
+            WARNING: A <see cref="T:System.Security.SecureString" /> object should never be constructed from
+                     a <see cref="T:System.String" />, because the sensitive data is already subject
+                     to the memory persistence consequences of the immutable <see
+                     cref="T:System.String" /> class. The best way to construct a <see
+                     cref="T:System.Security.SecureString" /> object is from a character-at-a-time unmanaged
+                     source, such as the <see cref="M:System.Console.ReadKey" /> method.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.MD.StreamExtensions">
+            <summary>
+            Extension Methods for working with the <see cref="T:System.IO.Stream" /> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.StreamExtensions.ToStream(System.String)">
+            <summary>
+            Converts the string to a UTF8 encoded MemoryStream.
+            </summary>
+            <remarks>
+            It is the responsibility of the caller to dispose the returned stream.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.MD.StreamExtensions.ReadAsString(System.IO.Stream)">
+            <summary>
+            Reads the Stream as a string
+            </summary>
+            <remarks>
+            The string is read from the current position until the end of the stream. The
+            original position is not restored.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.MD.StreamExtensions.FindInnerStream(System.IO.Stream,System.Collections.Generic.HashSet{System.IO.Stream})">
+            <summary>
+            Finds the inner stream, if one is present.
+            </summary>
+            <param name="input">The input stream.</param>
+            <param name="preventRecursion">
+            A hashet used to track and prevent unnecessary recursion.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.MD.StringExtensions">
+            <summary>
+            Extension methods for string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.StringExtensions.IsNullOrEmpty(System.String)">
+            <summary>
+            Calls string.IsNullOrEmpty
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.StringExtensions.IsNullOrWhiteSpace(System.String)">
+            <summary>
+            Calls string.IsNullOrWhiteSpace
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.StringExtensions.EqualsIgnoreCase(System.String,System.String)">
+            <summary>
+            Compares the strings for equality, ignoring case.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.StringExtensions.ContainsIgnoreCase(System.String,System.String)">
+            <summary>
+            Returns a value indicating whether a specified substring value occurs within
+            the input string.
+            </summary>
+            <param name="input">The input string.</param>
+            <param name="substringValue">The substring value to seek.</param>
+            <returns>
+            <c>true</c> if the <paramref name="substringValue" /> parameter occurs within
+            the <paramref name="input" /> string, or if the <paramref name="substringValue"
+            /> is <see cref="F:System.String.Empty" />, or if both parameters are <c>null</c>;
+            otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.MD.StringExtensions.FormatInvariant(System.String,System.Object[])">
+            <summary>
+            Returns string.Format(CultureInfo.InvariantCulture, string, args)
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.StringExtensions.FormatCurrent(System.String,System.Object[])">
+            <summary>
+            Returns string.Format(CultureInfo.CurrentCulture, string, args)
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.StringExtensions.ReplaceNonAlphaNumerics(System.String,System.Char)">
+            <summary>
+            Replaces all non-alphanumeric characters with the replacement value
+            </summary>
+            <param name="value"></param>
+            <param name="replacement">
+            The value to replace a non-alphanumeric char with
+            </param>
+            <returns>A new string with non-alphanumerics replaced</returns>
+        </member>
+        <member name="M:Microsoft.MD.StringExtensions.RemoveLastChar(System.String)">
+            <summary>
+            Removes the last character from a string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.StringExtensions.RemoveLast(System.String,System.Int32)">
+            <summary>
+            Removes the last 'n' characters from a string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.StringExtensions.RemoveFirstChar(System.String)">
+            <summary>
+            Removes the first character from a string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.StringExtensions.RemoveFirst(System.String,System.Int32)">
+            <summary>
+            Removes the first 'n' characters from a string.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.StringExtensions.Before(System.String,System.String)">
+            <summary>
+            Returns all characters before the first match of the search string
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.StringExtensions.After(System.String,System.String)">
+            <summary>
+            Returns all characters after the first match of the search string
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.ComparerFactory`1">
+            <summary>
+            Used to create a comparer based on a function predicate.
+            See the extensions for IEnumerable
+            </summary>
+            <typeparam name="T">The type to be compared</typeparam>
+        </member>
+        <member name="M:Microsoft.MD.ComparerFactory`1.Create(System.Func{`0,`0,System.Int32})">
+            <summary>
+            Create a new instance of the ComparerFactory
+            </summary>
+            <param name="comparison">Function predicate with comparison logic</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.MD.Validate">
+            <summary>
+            This is the starting point for Fluent validation.
+            You must call .Check() at the end to throw exceptions
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.Validate.Begin">
+            <summary>
+            Starts the validation process. Returns null, unless validation checking produces exceptions.
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.ValidationTracker">
+            <summary>
+            Tracks validation exceptions
+            </summary>
+        </member>
+        <member name="P:Microsoft.MD.ValidationTracker.Exceptions">
+            <summary>
+            List of all found exceptions
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.ValidationTracker.#ctor">
+            <summary>
+            Creates a new instance of the validation class, primed to hold 1 exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.ValidationTracker.AddException(System.Exception)">
+            <summary>
+            Adds an exception to the exception list. Returns "this" so multiple calls can be chained if nessecary.
+            </summary>
+        </member>
+        <member name="T:Microsoft.MD.ValidationExtensions">
+            <summary>
+            Extensions for the Validation class. These methods need to be here so the
+            validation class can remain null until there is an exception.
+            </summary>
+        </member>
+        <member name="M:Microsoft.MD.ValidationExtensions.IsNotNull``1(Microsoft.MD.ValidationTracker,``0,System.String)">
+            <summary>
+            Validates that the class is not null.
+            </summary>
+            <typeparam name="T">Class of type T</typeparam>
+            <param name="validation">The validation object</param>
+            <param name="theObject">The object being validated</param>
+            <param name="paramName">The name of the parameter being validated</param>
+            <returns>Validation instance or null</returns>
+        </member>
+        <member name="M:Microsoft.MD.ValidationExtensions.IsNotNullOrEmpty(Microsoft.MD.ValidationTracker,System.String,System.String)">
+            <summary>
+            Validates that the class is not null.
+            </summary>
+            <param name="validation">The validation object</param>
+            <param name="value">The string being validated</param>
+            <param name="paramName">The name of the parameter being validated</param>
+            <returns>Validation instance or null</returns>
+        </member>
+        <member name="M:Microsoft.MD.ValidationExtensions.IsPositive(Microsoft.MD.ValidationTracker,System.Int32,System.String)">
+            <summary>
+            Validates that the value is zero or positive.
+            </summary>
+            <param name="validation">The validation object</param>
+            <param name="value">The value being validated</param>
+            <param name="paramName">The name of the parameter being validated</param>
+            <returns>Validation instance or null</returns>
+        </member>
+        <member name="M:Microsoft.MD.ValidationExtensions.IsGreaterThan(Microsoft.MD.ValidationTracker,System.Int32,System.Int32,System.String)">
+            <summary>
+            Validates that the value is greater than the min
+            </summary>
+            <param name="validation">The validation object</param>
+            <param name="value">The value being validated</param>
+            <param name="min">The minimum value (exclusive)</param>
+            <param name="paramName">The name of the parameter being validated</param>
+            <returns>Validation instance or null</returns>
+        </member>
+        <member name="M:Microsoft.MD.ValidationExtensions.IsLessThan(Microsoft.MD.ValidationTracker,System.Int32,System.Int32,System.String)">
+            <summary>
+            Validates that the value is less than the max
+            </summary>
+            <param name="validation">The validation object</param>
+            <param name="value">The value being validated</param>
+            <param name="max">The max value allowed</param>
+            <param name="paramName">The name of the parameter being validated</param>
+            <returns>Validation instance or null</returns>
+        </member>
+        <member name="M:Microsoft.MD.ValidationExtensions.MeetsCondition``1(Microsoft.MD.ValidationTracker,System.Func{System.Boolean},System.String,System.String)">
+            <summary>
+            Checks to see if a condition is met, if not adds an exception of T where child
+            of ArgumentException
+            </summary>
+            <typeparam name="T">Type of ArgumentException to add</typeparam>
+            <param name="validation">The Validation object</param>
+            <param name="condition">The condition that must be true</param>
+            <param name="paramName">The name of the parameter being validated</param>
+            <param name="message">The error message to include</param>
+            <returns>Validation instance or null</returns>
+        </member>
+        <member name="M:Microsoft.MD.ValidationExtensions.Check(Microsoft.MD.ValidationTracker)">
+            <summary>
+            Checks for validation exceptions and throws if there are any
+            </summary>
+            <param name="validation">The validation object</param>
+            <returns><c>null</c></returns>
+            <exception cref="T:Microsoft.MD.ValidationException">
+            Thrown if there are any validation exceptions.
+            </exception>
+        </member>
+    </members>
+</doc>

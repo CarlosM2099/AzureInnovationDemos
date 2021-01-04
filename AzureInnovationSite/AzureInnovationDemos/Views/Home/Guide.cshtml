@@ -1,0 +1,118 @@
+﻿@model DemoGuideContent
+@{
+    ViewBag.Title = "Guide";
+}
+<link rel="stylesheet" href="~/css/guide.css" />
+
+
+@if (Model.Environment != null)
+{
+    <script>
+        var demoId = @Html.Raw(Model.DemoId);
+        var assets = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Assets, new Newtonsoft.Json.JsonSerializerSettings() { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver() }));
+        var environment = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Environment, new Newtonsoft.Json.JsonSerializerSettings() { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver() }));
+        var vm = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.VM, new Newtonsoft.Json.JsonSerializerSettings() { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver() }));
+
+        function initGuideAccordion() {
+            $("article").addClass("with-resources");
+            
+            $("#resources-icon-container").on("click", function () {
+                $(".guide-resources").toggle();
+            });
+        }
+    </script>
+
+    <div id="guide" v-if="displayResources">
+        <span id="resources-icon-container">
+            Your demo Resources
+            <i id="resources-icon" class="fa fa-arrow-circle-down" title="Display my demo resources for this demo"></i>            
+        </span>
+        <div class="guide-resources">
+            <div>                
+                <div class="resoure-item">
+                    <i class="fa fa-user-circle-o"></i>
+                    <div class="resoure-item-value">
+                        <h5>Your user account: </h5>
+                        <span>
+                            User:
+                            <span>{{environment.environmentUser}}</span>
+                            <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="environment.environmentUser" title="copy"></button>  <br />
+                        </span>
+                        <span>
+                            Password:
+                            <span>{{environment.environmentPassword}}</span>
+                            <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="environment.environmentPassword" title="copy"></button><br />
+                        </span>
+
+                        <span v-if="environment.environmentURL">
+                            <a v-bind:href="environment.environmentURL" target="_blank">{{environment.environmentDescription}}</a>
+                            <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="environment.environmentURL" title="copy"></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div v-if="vm">
+                <br />
+                <div class="resoure-item">
+
+                    <i class="fa fa-cloud"></i>
+                    <div class="resoure-item-value">
+                        <h5>Your virtual desktop session: </h5>
+                        <span v-if="vm.url">RDP Link<a v-bind:href="'/api/demos/'+demoId+'/rdp'"> click here to download</a></span>
+
+                        <ul class="demo-vm-tips" v-if="vm.url">
+                            <li>
+                                Use your demo user credentials to log in
+                            </li>
+                            <li>
+                                Use the prefix 'azuread\' before your user name:<br /> &ensp;&ensp;azuread\{{environment.environmentUser}}
+                                <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="'azuread\\'+environment.environmentUser" title="copy"></button>
+                            </li>
+                            <li>
+                                Mac user? Download <a href="https://apps.apple.com/us/app/microsoft-remote-desktop-10/id1295203466?mt=12" target="_blank"> Microsoft RDP client </a> first
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div v-if="environment && assets && assets.length > 0">
+                    <div v-for="asset in assets">
+                        <div class="resoure-item" v-if="asset.type.name == 'AccessKeyToken' || asset.type.name == 'Link'">
+                            <i v-if="asset.type.name == 'AccessKeyToken'" class="fa fa-key"></i>
+                            <i v-if="asset.type.name == 'Link'" class="fa fa-globe"></i>
+                            <div class="resoure-item-value">
+                                <h5>{{asset.name}}</h5>
+                                <span v-if="asset.type.name == 'AccessKeyToken'">{{asset.value}}</span>
+                                <a v-if="asset.type.name == 'Link'" v-bind:href="asset.value" target="_blank">{{asset.value}}</a>
+                                <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="asset.value" title="copy"></button><br />
+                            </div>
+                            <br />  <br />
+                        </div>
+                        <div class="resoure-item code" v-if="asset.type.name == 'Code'">
+                            <i class="fa fa-code"></i>
+                            <div class="demo-creds">
+                                <h4>{{asset.name}}</h4>
+                                <code v-bind:class="'code' + asset.id">{{asset.value}}</code>
+                                <span class="code-actions">
+                                    <button class="fa fa-plus" v-on:click="toggleCode('code' + asset.id)"></button>
+                                    <button class="copy-text fa fa-copy" v-bind:data-clipboard-text="asset.value" title="copy"></button><br />
+                                </span>
+                            </div>
+                            <br />  <br />
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/guide.js"></script>
+}
+
+<article>
+    <a class="demo-link" href="/demo/@Model.DemoId">Return To Demo</a>
+    @Html.Raw(Model.GuideContent)
+</article>
+
+

@@ -1,0 +1,12 @@
+D:\AzureInnovationDemos\AzureInnovationSite\AzureInnovationDemosDAL\bin\Debug\netcoreapp3.0\AzureInnovationDemosDAL.deps.json
+D:\AzureInnovationDemos\AzureInnovationSite\AzureInnovationDemosDAL\bin\Debug\netcoreapp3.0\AzureInnovationDemosDAL.runtimeconfig.json
+D:\AzureInnovationDemos\AzureInnovationSite\AzureInnovationDemosDAL\bin\Debug\netcoreapp3.0\AzureInnovationDemosDAL.runtimeconfig.dev.json
+D:\AzureInnovationDemos\AzureInnovationSite\AzureInnovationDemosDAL\bin\Debug\netcoreapp3.0\AzureInnovationDemosDAL.dll
+D:\AzureInnovationDemos\AzureInnovationSite\AzureInnovationDemosDAL\bin\Debug\netcoreapp3.0\AzureInnovationDemosDAL.pdb
+D:\AzureInnovationDemos\AzureInnovationSite\AzureInnovationDemosDAL\obj\Debug\netcoreapp3.0\AzureInnovationDemosDAL.csprojAssemblyReference.cache
+D:\AzureInnovationDemos\AzureInnovationSite\AzureInnovationDemosDAL\obj\Debug\netcoreapp3.0\AzureInnovationDemosDAL.AssemblyInfoInputs.cache
+D:\AzureInnovationDemos\AzureInnovationSite\AzureInnovationDemosDAL\obj\Debug\netcoreapp3.0\AzureInnovationDemosDAL.AssemblyInfo.cs
+D:\AzureInnovationDemos\AzureInnovationSite\AzureInnovationDemosDAL\obj\Debug\netcoreapp3.0\AzureInnovationDemosDAL.csproj.CoreCompileInputs.cache
+D:\AzureInnovationDemos\AzureInnovationSite\AzureInnovationDemosDAL\obj\Debug\netcoreapp3.0\AzureInnovationDemosDAL.dll
+D:\AzureInnovationDemos\AzureInnovationSite\AzureInnovationDemosDAL\obj\Debug\netcoreapp3.0\AzureInnovationDemosDAL.pdb
+D:\AzureInnovationDemos\AzureInnovationSite\AzureInnovationDemosDAL\obj\Debug\netcoreapp3.0\AzureInnovationDemosDAL.genruntimeconfig.cache

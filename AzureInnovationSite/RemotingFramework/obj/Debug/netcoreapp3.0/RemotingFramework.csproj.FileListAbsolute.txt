@@ -1,0 +1,11 @@
+D:\AzureInnovationDemos\AzureInnovationSite\RemotingFramework\bin\Debug\netcoreapp3.0\RemotingFramework.deps.json
+D:\AzureInnovationDemos\AzureInnovationSite\RemotingFramework\bin\Debug\netcoreapp3.0\RemotingFramework.dll
+D:\AzureInnovationDemos\AzureInnovationSite\RemotingFramework\bin\Debug\netcoreapp3.0\RemotingFramework.pdb
+D:\AzureInnovationDemos\AzureInnovationSite\RemotingFramework\bin\Debug\netcoreapp3.0\ICSharpCode.SharpZipLib.dll
+D:\AzureInnovationDemos\AzureInnovationSite\RemotingFramework\obj\Debug\netcoreapp3.0\RemotingFramework.csprojAssemblyReference.cache
+D:\AzureInnovationDemos\AzureInnovationSite\RemotingFramework\obj\Debug\netcoreapp3.0\RemotingFramework.AssemblyInfoInputs.cache
+D:\AzureInnovationDemos\AzureInnovationSite\RemotingFramework\obj\Debug\netcoreapp3.0\RemotingFramework.AssemblyInfo.cs
+D:\AzureInnovationDemos\AzureInnovationSite\RemotingFramework\obj\Debug\netcoreapp3.0\RemotingFramework.csproj.CoreCompileInputs.cache
+D:\AzureInnovationDemos\AzureInnovationSite\RemotingFramework\obj\Debug\netcoreapp3.0\RemotingFramework.csproj.CopyComplete
+D:\AzureInnovationDemos\AzureInnovationSite\RemotingFramework\obj\Debug\netcoreapp3.0\RemotingFramework.dll
+D:\AzureInnovationDemos\AzureInnovationSite\RemotingFramework\obj\Debug\netcoreapp3.0\RemotingFramework.pdb

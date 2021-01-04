@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Guide Content";
+}
+
+<link rel="stylesheet" href="~/css/guide-sync.css" />
+
+<script>
+    var connection;
+
+    function initHubConnection() {
+
+        connection = new signalR.HubConnectionBuilder().withUrl("/GuideContentLog").build();
+
+        connection.on("ReceiveMessage", function (message) {
+            var li = document.createElement("li");
+            li.textContent = message;
+            document.getElementById("log").appendChild(li);
+        });
+
+        connection.start().then(function () {
+
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+    }
+</script>
+
+<h1>MD Guides Content</h1>
+<div id="guidContentUpdate">
+    <button id="syncBtn" v-on:click="syncMDContent()" v-bind:disabled="syncingContent" class="btn btn-default">
+        <span v-if="!syncingContent">Sync MD Guides Content</span>
+        <span class="syncing-guides" v-if="syncingContent">Syncing MD Guides Content</span>
+    </button>
+    <ul id="log"></ul>
+</div>
+
+<script src="/lib/@Html.Raw("@")aspnet/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/guideContentSync.js"></script>
+

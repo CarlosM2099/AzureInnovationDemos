@@ -1,0 +1,19 @@
+﻿@using System.Security.Principal
+
+<ul class="nav navbar-nav navbar-right">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li class="navbar-text">
+             @ViewBag.UserName 
+        </li>
+        <li>
+            <a class="nav-link text-dark" asp-area="AzureAD" asp-controller="Account" asp-action="SignOut">Sign out</a>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a class="nav-link text-dark" asp-area="AzureAD" asp-controller="Account" asp-action="SignIn">Sign in</a>
+        </li>
+    }
+</ul>

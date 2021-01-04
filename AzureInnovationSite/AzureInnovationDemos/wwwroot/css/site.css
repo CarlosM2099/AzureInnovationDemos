@@ -1,0 +1,425 @@
+﻿html {
+    height: 100%;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #EAEAEA;
+    height: 100%;
+    position: relative;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+h4 {
+    font-size: 18px !important;
+}
+
+.demo-section a:focus, .demo-section a:hover {
+    color: #23527c !important;
+    text-decoration: underline;
+}
+
+a:active, a:hover {
+    outline: 0;
+}
+
+a:active, a:hover {
+    outline-width: 0;
+}
+
+.demo-section a {
+    color: #337ab7 !important;
+    text-decoration: none;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.demos-list {
+    list-style-type: none;
+    margin: unset;
+    text-align: center;
+    padding: unset;
+    margin-top: 60px;
+}
+
+    .demos-list > li {
+        display: inline-block;
+        margin: 20px;
+        cursor: pointer;
+        vertical-align: text-top;
+        background-color: #ffffff;
+        padding: 14px;
+        width: 380px;
+        height: 300px;
+        padding-top: 60px;
+        box-shadow: lightgray 2px 2px;
+        border-radius: 2px;
+        margin-bottom: 50px;
+    }
+
+        .demos-list > li:hover {
+            background-color: #00b7c3;
+        }
+
+        .demos-list > li > h4 {
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+.demo-resource-list {
+    margin: unset;
+    list-style-type: none;
+    padding: unset;
+}
+
+    .demo-resource-list li {
+        padding: 2px;
+    }
+
+        .demo-resource-list li h4 {
+            margin-bottom: 2px;
+        }
+
+.demo-section {
+    background-color: white;
+    padding: 15px;
+    border-radius: 3px;
+    box-shadow: lightgray 2px 2px;
+}
+
+    .demo-section a {
+        cursor: pointer;
+    }
+
+.processing-demo-access, .no-demo-res {
+    text-align: center;
+}
+
+    .no-demo-res .fa {
+        color: lightblue;
+        margin-right: 5px;
+        font-size: 22px;
+    }
+
+.navbar-inverse {
+    background-color: #fff;
+    border: unset;
+    color: #000;
+}
+
+    .navbar-inverse .navbar-toggle .icon-bar {
+        background-color: #000;
+    }
+
+    .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+        background-color: #fff;
+    }
+
+    .navbar-inverse .navbar-brand, .navbar-inverse .navbar-text, .navbar-inverse .navbar-nav > li > a {
+        color: #000;
+    }
+
+        .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-nav > li > a:hover {
+            color: #000;
+        }
+
+.navbar-text {
+    height: 50px;
+    margin: 0;
+    line-height: 50px;
+}
+
+.home-link {
+    color: lightblue;
+    font-size: 30px;
+    margin-top: 3px;
+    margin-left: 3px;
+    vertical-align: text-bottom;
+}
+
+    .home-link:hover {
+        color: lightblue;
+    }
+
+.navbar-right {
+    margin-right: unset !important;
+}
+
+.bar-logo {
+    background-image: url(../images/microsoft_azure_logo.png); /*need image*/
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 50px;
+    background-position: 2px;
+    width: 180px;
+    vertical-align: bottom;
+    background-size: 180px;
+}
+
+.demo-vm-tips {
+    list-style-type: circle;
+}
+
+.copy-text {
+    background-color: unset;
+    text-decoration: underline;
+    cursor: pointer;
+    border: unset;
+    font-size: 12px;
+    vertical-align: text-top;
+    color: grey;
+}
+
+.resoure-item > i {
+    color: lightblue;
+}
+
+.demo-creds-list .fa-user-circle-o, .demo-creds-list .fa-cloud, .demo-access-resource-list .fa-key, .demo-access-expiration .fa-clock-o, .demo-access-resource-list .fa-globe, .demo-access-resource-list .fa-code {
+    display: inline-block;
+    font-size: 35px;
+    color: lightblue;
+    vertical-align: text-top;
+    margin-right: 5px;
+    margin-top: 8px;
+}
+
+.resoure-item.code {
+    position: relative;
+}
+
+    .resoure-item.code h4 {
+        margin-top: 18px;
+    }
+
+    .resoure-item.code .demo-creds {
+        max-width: 90%;
+    }
+
+    .resoure-item.code .code-actions {
+        position: absolute;
+        top: 55px;
+        right: 0px;
+        margin-right: 70px;
+    }
+
+    .resoure-item.code .code-actions button{
+        background: transparent;
+        border: none;
+    }
+        .resoure-item code {
+            margin-top: 15px;
+            -webkit-text-size-adjust: auto;
+            background-color: rgb(246, 248, 250);
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            box-sizing: border-box;
+            color: rgb(36, 41, 46);
+            display: block;
+            font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+            font-size: 13.6px;
+            line-height: 19.72px;
+            margin-bottom: 0px;
+            margin-top: 0px;
+            overflow: auto;
+            padding-top: 4px;
+            word-break: normal;
+            word-wrap: normal;
+            white-space: pre-wrap;
+            padding-bottom: 4px;
+            padding-left: 4px;
+            padding-right: 4px;
+            max-height: 30px;
+            overflow: hidden;
+        }
+
+.demo-creds, .demo-access-expiration-date {
+    display: inline-block;
+    vertical-align: text-top;
+}
+
+.demo-access-expiration-value {
+    margin-top: 0 !important;
+}
+
+.hexagon-container {
+    text-align: center;
+    margin-top: -105px;
+}
+
+.hexagon {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 48px;
+    background-color: #00203D;
+    margin: 23.09px 0;
+    transform: rotate(90deg);
+}
+
+    .hexagon:before,
+    .hexagon:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        border-left: 40px solid transparent;
+        border-right: 40px solid transparent;
+    }
+
+    .hexagon:before {
+        bottom: 100%;
+        border-bottom: 23.09px solid #00203D;
+        margin-left: -40px;
+    }
+
+    .hexagon:after {
+        top: 100%;
+        width: 0;
+        border-top: 23.09px solid #00203D;
+        margin-left: -40px;
+    }
+
+.hexagon-container .fa {
+    display: inline-block;
+    position: absolute;
+    color: white;
+    font-size: 35px;
+    margin-left: -62px;
+    margin-top: 28px;
+}
+
+footer {
+    height: 80px;
+    background: #F4F4F4;
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 0px;
+    bottom: 0px;
+    text-align: right;
+}
+
+body .microsoft-logo {
+    vertical-align: middle;
+    margin: 20px;
+}
+
+body .footer-legal {
+    font-family: Tahoma,Verdana,Arial,sans-serif;
+    font-weight: normal;
+    font-size: 11px;
+    letter-spacing: .05em;
+    color: #000;
+    margin-right: 25px;
+    line-height: 55px;
+}
+
+    body .footer-legal :hover {
+        text-decoration: underline;
+    }
+
+.demo-1, .demo-3, .demo-4 {
+    background-image: url(../images/TTLogo.png);
+    position: absolute;
+    display: inline-block;
+    width: 60px;
+    height: 35px;
+    background-size: 60px;
+    background-repeat: no-repeat;
+    margin-left: -70px;
+    margin-top: 30px;
+}
+
+.demo-2 {
+    background-image: url(../images/AGLogo.png);
+    position: absolute;
+    display: inline-block;
+    width: 60px;
+    height: 35px;
+    background-size: 60px 22px;
+    background-repeat: no-repeat;
+    margin-left: -70px;
+    margin-top: 30px;
+}
+
+.alert-danger {
+    position: absolute;
+    padding: 5px;
+    width: 100%;
+    top: 50px;
+    display: none;
+}
+
+    .alert-danger > .close {
+    }
+
+.validationg-demo-res {
+    margin-top: 16px;
+}
+
+    .validationg-demo-res .fa {
+        color: lightblue;
+        margin-right: 3px;
+    }
+
+.validationg-demo-res-el:after, .processing-demo-access:after {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    -webkit-animation: ellipsis steps(3,end) 900ms infinite;
+    animation: ellipsis steps(3,end) 900ms infinite;
+    content: "\2026"; /* ascii code for the ellipsis character */
+    width: 0px;
+}
+
+.demo-access-validation {
+    margin-top: 16px;
+}
+
+    .demo-access-validation .fa {
+        color: lightblue;
+        margin-right: 3px;
+    }
+
+.processing-demo-access:after {
+    position: absolute;
+}
+
+@keyframes ellipsis {
+    to {
+        width: 1.25em;
+    }
+}
+
+@-webkit-keyframes ellipsis {
+    to {
+        width: 1.25em;
+    }
+}
